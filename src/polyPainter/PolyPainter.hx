@@ -212,8 +212,9 @@ class PolyPainter{
     }
     public function drawImageTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,  au: Float, av: Float, bu: Float, bv: Float, cu: Float, cv: Float
-                                    , img: Image ){
+                                    , img: Image, ?alpha: Float = 1.){
         var color = Color.White;
+        if( alpha != 1. ) color.A = alpha;
         if( lastTexture != img || shaderMode == GradientMode ) flush();
         lastTexture = img; 
         var writePos = writePosImage;
@@ -246,6 +247,47 @@ class PolyPainter{
         verticesImage.set( writePos +  6, color.G );
         verticesImage.set( writePos +  7, color.B );
         verticesImage.set( writePos +  8, color.A );
+        writePos+=9;
+        writePosImage = writePos;
+        bufferIndexImage++;
+    }
+    // this is mainly for if you want to alpha out part of an image
+    // still uses image shader.
+    public function drawImageTriangleGradient( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
+                                    ,  au: Float, av: Float, bu: Float, bv: Float, cu: Float, cv: Float
+                                    , img: Image, color0: Color, color1: Color, color2: Color ){
+        if( lastTexture != img || shaderMode == GradientMode ) flush();
+        lastTexture = img; 
+        var writePos = writePosImage;
+        verticesImage.set( writePos +  0, ax );
+        verticesImage.set( writePos +  1, ay );
+        verticesImage.set( writePos +  2, -5.0 );
+        verticesImage.set( writePos +  3, au );
+        verticesImage.set( writePos +  4, av );
+        verticesImage.set( writePos +  5, color0.R );
+        verticesImage.set( writePos +  6, color0.G );
+        verticesImage.set( writePos +  7, color0.B );
+        verticesImage.set( writePos +  8, color0.A );
+        writePos+=9;
+        verticesImage.set( writePos +  0, bx );
+        verticesImage.set( writePos +  1, by );
+        verticesImage.set( writePos +  2, -5.0 );
+        verticesImage.set( writePos +  3, bu );
+        verticesImage.set( writePos +  4, bv );
+        verticesImage.set( writePos +  5, color1.R );
+        verticesImage.set( writePos +  6, color1.G );
+        verticesImage.set( writePos +  7, color1.B );
+        verticesImage.set( writePos +  8, color1.A );
+        writePos+=9;
+        verticesImage.set( writePos +  0, cx );
+        verticesImage.set( writePos +  1, cy );
+        verticesImage.set( writePos +  2, -5.0 );
+        verticesImage.set( writePos +  3, cu );
+        verticesImage.set( writePos +  4, cv );
+        verticesImage.set( writePos +  5, color2.R );
+        verticesImage.set( writePos +  6, color2.G );
+        verticesImage.set( writePos +  7, color2.B );
+        verticesImage.set( writePos +  8, color2.A );
         writePos+=9;
         writePosImage = writePos;
         bufferIndexImage++;

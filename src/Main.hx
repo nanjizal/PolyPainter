@@ -21,7 +21,7 @@ class Main {
         // draw on a canvas
         poly.canvas = canvas;
         poly.begin(true);
-        poly.drawImageTriangle( 10, 10, 300, 10, 50, 400, 0, 0, 1, 0, 0, 1, kha.Assets.images.pexel );
+        poly.drawImageTriangle( 10, 10, 300, 10, 50, 400, 0, 0, 1, 0, 0, 1, kha.Assets.images.pexel, 0.7 );
         poly.drawGradientTriangle( 210, 10, 300, 10, 50, 400, Color.Red, Color.Green, Color.Blue );
         poly.end();
         // draw canvas on framebuffer
