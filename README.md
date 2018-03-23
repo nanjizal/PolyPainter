@@ -89,6 +89,8 @@ When drawing an image you must also supply the u, v coordinates for each corner 
         polyPainter.drawImageTriangle( ax, ay, bx, by, cx, cy, au, av, bu, bv, cu, cv
                                      , kha.Assets.images.myImage, colorA, colorB, colorC );
 ```
+## Example Use
+### See the *Main.hx* in the src folder.
 
 ____________________________________________________________________________________________________________________________________
 ## Demo
