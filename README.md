@@ -3,7 +3,7 @@ PolyPainter class to allow you to draw textured and gradient triangles in Kha mo
 
 #### Notes:
 - Thanks to Sidar for initial version - from which this is modified and extended. And for the lovely Rose img hope it's ok to use?
-- Subject to change when explored real use cases.
+- Subject to change after more exploration of real use cases.
 
 ## Usage:
 
