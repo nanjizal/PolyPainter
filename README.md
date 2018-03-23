@@ -29,7 +29,7 @@ There are two options for where you draw:
 
 ``` Haxe
         var image = kha.Image.createRenderTarget( 1024, 768, null, kha.graphics4.DepthStencilFormat.NoDepthAndStencil );
-	    polyPainter.canvas = image;
+        polyPainter.canvas = image;
 ```
 
     
