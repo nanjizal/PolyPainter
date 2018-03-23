@@ -8,5 +8,7 @@
     "classPath"    : "src",
     "releasenote"  : "Initial release",
     "contributors" : ["Nanjizal","Sidar"],
-    "dependencies" : {}
+    "dependencies" : {
+        "kha":""
+    }
 }
