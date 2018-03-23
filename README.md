@@ -1,13 +1,13 @@
 # PolyPainter
 PolyPainter class to allow you to draw textured and gradient triangles in Kha more easily.
 
-####Notes:
+#### Notes:
 - Thanks to Sidar for initial version - from which this is modified and extended. And for the lovely Rose img hope it's ok to use?
 - Subject to change when explored real use cases.
 
-##Usage:
+## Usage:
 
-###Setup
+### Setup
 
 To setup the shaders by creating a new 'PolyPainter'
 
@@ -15,7 +15,7 @@ To setup the shaders by creating a new 'PolyPainter'
 	polyPainter = new PolyPainter();
 ```
 
-###Setting drawing target
+### Setting drawing target
 
 There are two options for where you draw:
 
@@ -34,7 +34,7 @@ There are two options for where you draw:
 
     
 
-###Drawing triangles
+### Drawing triangles
 
 There several options for drawing your triangles but they must have a **begin** and **end** before use and a target already setup.
 
@@ -54,7 +54,7 @@ When drawing an image you must also supply the u, v coordinates for each corner 
      au, av, bu, bv, cu, cv
 ```
 
-##Triangle Options
+## Triangle Options
 
 - **drawFillTriangle**
     
@@ -77,7 +77,8 @@ When drawing an image you must also supply the u, v coordinates for each corner 
     used for textured triangles, can be used like a mask, an optional alpha value allows easy control of opacity.
 
 ``` Haxe
-        polyPainter.drawImageTriangle( ax, ay, bx, by, cx, cy, au, av, bu, bv, cu, cv, kha.Assets.images.myImage, optionAlpha );
+        polyPainter.drawImageTriangle( ax, ay, bx, by, cx, cy, au, av, bu, bv, cu, cv
+                                     , kha.Assets.images.myImage, optionAlpha );
 ```
 
 - **drawImageTriagleGradient**
@@ -85,10 +86,11 @@ When drawing an image you must also supply the u, v coordinates for each corner 
     useful if you want to perhaps fade or tint an image, more of an advanced feature for special occasions.
     
 ``` Haxe
-        polyPainter.drawImageTriangle( ax, ay, bx, by, cx, cy, au, av, bu, bv, cu, cv, kha.Assets.images.myImage, colorA, colorB, colorC );
+        polyPainter.drawImageTriangle( ax, ay, bx, by, cx, cy, au, av, bu, bv, cu, cv
+                                     , kha.Assets.images.myImage, colorA, colorB, colorC );
 ```
 
 ____________________________________________________________________________________________________________________________________
-##Demo
+## Demo
 
 [polypainter test](https://nanjizal.github.io/PolyPainter/build/html5/index.html) ( could create more interesting demo ).
