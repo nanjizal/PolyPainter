@@ -1,9 +1,9 @@
 # PolyPainter
 PolyPainter class to allow you to draw textured and gradient triangles in Kha more easily.
 
-#### Notes:
-- Thanks to Sidar for initial version - from which this is modified and extended. And for the lovely Rose img hope it's ok to use?
-- Subject to change after more exploration of real use cases.
+[PolyPainter test](https://nanjizal.github.io/PolyPainter/build/html5/index.html)
+
+___________________________________________________________________________________________________________________________________
 
 ## Usage:
 
@@ -90,9 +90,18 @@ When drawing an image you must also supply the u, v coordinates for each corner 
                                      , kha.Assets.images.myImage, colorA, colorB, colorC );
 ```
 ## Example Use
-#### See the *Main.hx* in the src folder.
+    See the *Main.hx* in the src folder.
+
+
+
+___________________________________________________________________________________________________________________________________
+
+#### Notes:
+- Thanks to Sidar for initial version - from which this is modified and extended. And for the lovely Rose image hope it's ok to use?
+- Thanks to my Cat Suma for posing for the other image used!
+- Subject to change after more exploration of real use cases.
 
 ____________________________________________________________________________________________________________________________________
 ## Demo
 
-[polypainter test](https://nanjizal.github.io/PolyPainter/build/html5/index.html) ( could create more interesting demo ).
+[PolyPainter test](https://nanjizal.github.io/PolyPainter/build/html5/index.html) ( could create more interesting demo ).
