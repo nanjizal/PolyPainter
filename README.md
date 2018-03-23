@@ -99,6 +99,7 @@ ________________________________________________________________________________
 #### Notes:
 - Thanks to Sidar for initial version - from which this is modified and extended. And for the lovely Rose image hope it's ok to use?
 - Thanks to my Cat Suma for posing for the other image used!
+- Currently render order may not be optimal, feel free to send pull requests.
 - Subject to change after more exploration of real use cases.
 
 ____________________________________________________________________________________________________________________________________
