@@ -101,7 +101,7 @@ ________________________________________________________________________________
 - Thanks to my Cat Suma for posing for the other image used!
 - Currently render order may not be optimal, feel free to send pull requests.
 - Subject to change after more exploration of real use cases.
-- Two shaders types are used both from Graphics2, the Texture one for Images and the Colored one for Gradient and Filling. 
+- Two shaders types are used both from kha.graphics4.Graphics2, the Texture one for Images and the Colored one for Gradient and Filling. 
 
 ____________________________________________________________________________________________________________________________________
 ## Demo
