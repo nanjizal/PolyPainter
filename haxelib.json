@@ -1,0 +1,12 @@
+{
+    "name"         : "PolyPrinter",
+    "url"          : "https://github.com/nanjizal/PolyPrinter#PolyPrinter",
+    "license"      : "MIT",
+    "tags"         : ["kha","triangle","drawing"],
+    "description"  : "PolyPrinter - for use with Kha to help more easily draw 2D triangles - textured, gradient and color.",
+    "version"      : "0.0.1",
+    "classPath"    : "src",
+    "releasenote"  : "Initial release",
+    "contributors" : ["Nanjizal","Sidar"],
+    "dependencies" : {}
+}
