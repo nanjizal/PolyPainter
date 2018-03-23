@@ -58,6 +58,8 @@ class PolyPainter{
     static var lastTexture: Image;
     static var vertexPosImage :Int = 0;
     static var vertexPosGradient: Int = 0;
+    public var textureAddressingX: TextureAddressing = Clamp;
+    public var textureAddressingY: TextureAddressing = Clamp;
     var shaderMode = ImageMode;
     var bilinear: Bool = false;
     var bilinearMipmaps: Bool = false;    
@@ -390,7 +392,7 @@ class PolyPainter{
         g.setIndexBuffer(indexBufferImage);
         g.setPipeline( shaderPipelineImage );//pipeline == null ? shaderPipelineImage : pipeline);
         g.setTexture( textureLocation, lastTexture );
-        g.setTextureParameters( textureLocation, TextureAddressing.Clamp, TextureAddressing.Clamp, bilinear ? TextureFilter.LinearFilter : TextureFilter.PointFilter, bilinear ? TextureFilter.LinearFilter : TextureFilter.PointFilter, bilinearMipmaps ? MipMapFilter.LinearMipFilter : MipMapFilter.NoMipFilter );
+        g.setTextureParameters( textureLocation, textureAddressingX, textureAddressingY, bilinear ? TextureFilter.LinearFilter : TextureFilter.PointFilter, bilinear ? TextureFilter.LinearFilter : TextureFilter.PointFilter, bilinearMipmaps ? MipMapFilter.LinearMipFilter : MipMapFilter.NoMipFilter );
         g.setMatrix( projectionLocationImage, projectionMatrix );
 
         g.drawIndexedVertices(0, bufferIndexImage*3);
