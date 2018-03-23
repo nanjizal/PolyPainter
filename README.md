@@ -86,7 +86,7 @@ When drawing an image you must also supply the u, v coordinates for each corner 
     useful if you want to perhaps fade or tint an image, more of an advanced feature for special occasions.
     
 ``` Haxe
-        polyPainter.drawImageTriangle( ax, ay, bx, by, cx, cy, au, av, bu, bv, cu, cv
+        polyPainter.drawImageTriangleGradient( ax, ay, bx, by, cx, cy, au, av, bu, bv, cu, cv
                                      , kha.Assets.images.myImage, colorA, colorB, colorC );
 ```
 ## Example Use
