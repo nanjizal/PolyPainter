@@ -1,5 +1,5 @@
 # PolyPainter
-PolyPainter class to allow you to draw textured and gradient triangles in Kha more easily.
+PolyPainter class to allow you to draw textured and gradient triangles in Kha more easily. Kha is a cross target toolkit for Haxe language.
 
 [PolyPainter test](https://nanjizal.github.io/PolyPainter/build/html5/index.html)
 
