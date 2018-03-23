@@ -81,7 +81,7 @@ When drawing an image you must also supply the u, v coordinates for each corner 
                                      , kha.Assets.images.myImage, optionAlpha );
 ```
 
-- **drawImageTriagleGradient**
+- **drawImageTriangleGradient**
 
     useful if you want to perhaps fade or tint an image, more of an advanced feature for special occasions.
     
