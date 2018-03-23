@@ -179,6 +179,38 @@ class PolyPainter{
         }
     }
 
+    public function drawFillTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
+                                    ,     color: Color ){
+        if( shaderMode == ImageMode ) flush();
+        var writePos = writePosGradient;
+        verticesGradient.set( writePos +  0, ax );
+        verticesGradient.set( writePos +  1, ay );
+        verticesGradient.set( writePos +  2, -5.0 );
+        verticesGradient.set( writePos +  3, color.R );
+        verticesGradient.set( writePos +  4, color.G );
+        verticesGradient.set( writePos +  5, color.B );
+        verticesGradient.set( writePos +  6, color.A );
+        writePos +=7;
+        verticesGradient.set( writePos +  0, bx );
+        verticesGradient.set( writePos +  1, by );
+        verticesGradient.set( writePos +  2, -5.0 );
+        verticesGradient.set( writePos +  3, color.R );
+        verticesGradient.set( writePos +  4, color.G );
+        verticesGradient.set( writePos +  5, color.B );
+        verticesGradient.set( writePos +  6, color.A );
+        writePos +=7;
+        verticesGradient.set( writePos +  0, cx );
+        verticesGradient.set( writePos +  1, cy );
+        verticesGradient.set( writePos +  2, -5.0 );
+        verticesGradient.set( writePos +  3, color.R );
+        verticesGradient.set( writePos +  4, color.G );
+        verticesGradient.set( writePos +  5, color.B );
+        verticesGradient.set( writePos +  6, color.A );
+        writePos +=7;
+        writePosGradient = writePos;
+        bufferIndexGradient++;
+    }
+
     public function drawGradientTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,     color0: Color, color1: Color, color2: Color ){
         if( shaderMode == ImageMode ) flush();
@@ -210,6 +242,7 @@ class PolyPainter{
         writePosGradient = writePos;
         bufferIndexGradient++;
     }
+    
     public function drawImageTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,  au: Float, av: Float, bu: Float, bv: Float, cu: Float, cv: Float
                                     , img: Image, ?alpha: Float = 1.){
@@ -255,7 +288,7 @@ class PolyPainter{
     // still uses image shader.
     public function drawImageTriangleGradient( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,  au: Float, av: Float, bu: Float, bv: Float, cu: Float, cv: Float
-                                    , img: Image, color0: Color, color1: Color, color2: Color ){
+                                    , img: Image, colorA: Color, colorB: Color, colorC: Color ){
         if( lastTexture != img || shaderMode == GradientMode ) flush();
         lastTexture = img; 
         var writePos = writePosImage;
@@ -264,30 +297,30 @@ class PolyPainter{
         verticesImage.set( writePos +  2, -5.0 );
         verticesImage.set( writePos +  3, au );
         verticesImage.set( writePos +  4, av );
-        verticesImage.set( writePos +  5, color0.R );
-        verticesImage.set( writePos +  6, color0.G );
-        verticesImage.set( writePos +  7, color0.B );
-        verticesImage.set( writePos +  8, color0.A );
+        verticesImage.set( writePos +  5, colorA.R );
+        verticesImage.set( writePos +  6, colorA.G );
+        verticesImage.set( writePos +  7, colorA.B );
+        verticesImage.set( writePos +  8, colorA.A );
         writePos+=9;
         verticesImage.set( writePos +  0, bx );
         verticesImage.set( writePos +  1, by );
         verticesImage.set( writePos +  2, -5.0 );
         verticesImage.set( writePos +  3, bu );
         verticesImage.set( writePos +  4, bv );
-        verticesImage.set( writePos +  5, color1.R );
-        verticesImage.set( writePos +  6, color1.G );
-        verticesImage.set( writePos +  7, color1.B );
-        verticesImage.set( writePos +  8, color1.A );
+        verticesImage.set( writePos +  5, colorB.R );
+        verticesImage.set( writePos +  6, colorB.G );
+        verticesImage.set( writePos +  7, colorB.B );
+        verticesImage.set( writePos +  8, colorB.A );
         writePos+=9;
         verticesImage.set( writePos +  0, cx );
         verticesImage.set( writePos +  1, cy );
         verticesImage.set( writePos +  2, -5.0 );
         verticesImage.set( writePos +  3, cu );
         verticesImage.set( writePos +  4, cv );
-        verticesImage.set( writePos +  5, color2.R );
-        verticesImage.set( writePos +  6, color2.G );
-        verticesImage.set( writePos +  7, color2.B );
-        verticesImage.set( writePos +  8, color2.A );
+        verticesImage.set( writePos +  5, colorC.R );
+        verticesImage.set( writePos +  6, colorC.G );
+        verticesImage.set( writePos +  7, colorC.B );
+        verticesImage.set( writePos +  8, colorC.A );
         writePos+=9;
         writePosImage = writePos;
         bufferIndexImage++;
