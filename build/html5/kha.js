@@ -162,22 +162,251 @@ var Main = function() { };
 $hxClasses["Main"] = Main;
 Main.__name__ = true;
 Main.update = function() {
+	kha_Scheduler.stop();
+	Main.polyPainter.set_canvas(Main.renderTarget);
+	Main.polyPainter.begin(false);
+	var blueRed = -9473037;
+	var blueGreen = -5182731;
+	var topUp = -200;
+	var _this = Main.polyPainter;
+	if(_this.shaderMode == 1) {
+		_this.flush();
+	}
+	var pos = _this.posGradient;
+	polyPainter_PolyPainter.verticesGrad[pos] = 0;
+	polyPainter_PolyPainter.verticesGrad[pos + 1] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos + 2] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos + 3] = ((blueRed & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 4] = ((blueRed & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 5] = (blueRed & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 6] = (blueRed >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 7] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos + 8] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos + 9] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos + 10] = ((-11568914 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 11] = ((-11568914 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 12] = (-11568914 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 13] = (-11568914 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 14] = 0;
+	polyPainter_PolyPainter.verticesGrad[pos + 15] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos + 16] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos + 17] = ((-5320715 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 18] = ((-5320715 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 19] = (-5320715 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 20] = (-5320715 >>> 24) * 0.00392156862745098;
+	_this.posGradient = pos + 21;
+	polyPainter_PolyPainter.gradBufferIndex++;
+	var _this1 = Main.polyPainter;
+	if(_this1.shaderMode == 1) {
+		_this1.flush();
+	}
+	var pos1 = _this1.posGradient;
+	polyPainter_PolyPainter.verticesGrad[pos1] = 0;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 1] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 2] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 3] = ((-5320715 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 4] = ((-5320715 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 5] = (-5320715 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 6] = (-5320715 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 7] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 8] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 9] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 10] = ((-11568914 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 11] = ((-11568914 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 12] = (-11568914 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 13] = (-11568914 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 14] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 15] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 16] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 17] = ((-7558674 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 18] = ((-7558674 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 19] = (-7558674 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 20] = (-7558674 >>> 24) * 0.00392156862745098;
+	_this1.posGradient = pos1 + 21;
+	polyPainter_PolyPainter.gradBufferIndex++;
+	var _this2 = Main.polyPainter;
+	if(_this2.shaderMode == 1) {
+		_this2.flush();
+	}
+	var pos2 = _this2.posGradient;
+	polyPainter_PolyPainter.verticesGrad[pos2] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 1] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 2] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 3] = ((-11568914 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 4] = ((-11568914 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 5] = (-11568914 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 6] = (-11568914 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 7] = 800;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 8] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 9] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 10] = ((-14852116 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 11] = ((-14852116 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 12] = (-14852116 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 13] = (-14852116 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 14] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 15] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 16] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 17] = ((-7558674 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 18] = ((-7558674 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 19] = (-7558674 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 20] = (-7558674 >>> 24) * 0.00392156862745098;
+	_this2.posGradient = pos2 + 21;
+	polyPainter_PolyPainter.gradBufferIndex++;
+	var _this3 = Main.polyPainter;
+	if(_this3.shaderMode == 1) {
+		_this3.flush();
+	}
+	var pos3 = _this3.posGradient;
+	polyPainter_PolyPainter.verticesGrad[pos3] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 1] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 2] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 3] = ((-7558674 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 4] = ((-7558674 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 5] = (-7558674 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 6] = (-7558674 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 7] = 800;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 8] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 9] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 10] = ((-14852116 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 11] = ((-14852116 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 12] = (-14852116 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 13] = (-14852116 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 14] = 800;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 15] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 16] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 17] = ((blueGreen & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 18] = ((blueGreen & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 19] = (blueGreen & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 20] = (blueGreen >>> 24) * 0.00392156862745098;
+	_this3.posGradient = pos3 + 21;
+	polyPainter_PolyPainter.gradBufferIndex++;
+	Main.polyPainter.end();
 };
 Main.render = function(framebuffer) {
 	var g2 = framebuffer.get_g2();
 	Main.polyPainter.set_framebuffer(framebuffer);
 	Main.polyPainter.begin(true);
-	Main.polyPainter.drawGradientTriangle(0,0,30,10,50,400,-65536,-16711936,-16776961);
-	Main.polyPainter.drawImageTriangle(30,10,300,10,50,400,0,0,1,0,0,1,kha_Assets.images.suma);
+	Main.polyPainter.drawImageTriangle(0,0,1000,0,1000,1000,0,0,1,0,1,1,Main.renderTarget);
+	Main.polyPainter.drawImageTriangle(0,0,1000,1000,0,1000,0,0,1,1,0,1,Main.renderTarget);
 	Main.polyPainter.end();
-	Main.polyPainter.set_canvas(Main.renderTarget);
-	Main.polyPainter.begin(true);
-	Main.polyPainter.drawImageTriangle(10,10,300,10,50,400,0,0,1,0,0,1,kha_Assets.images.pexel,0.7);
-	Main.polyPainter.drawGradientTriangle(210,10,300,10,50,400,-65536,-16711936,-16776961);
-	Main.polyPainter.end();
-	g2.begin(false);
-	g2.drawImage(Main.renderTarget,100,0);
-	g2.end();
+	kha_System.removeRenderListener(Main.render);
+};
+Main.sky = function() {
+	var blueRed = -9473037;
+	var blueGreen = -5182731;
+	var topUp = -200;
+	var _this = Main.polyPainter;
+	if(_this.shaderMode == 1) {
+		_this.flush();
+	}
+	var pos = _this.posGradient;
+	polyPainter_PolyPainter.verticesGrad[pos] = 0;
+	polyPainter_PolyPainter.verticesGrad[pos + 1] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos + 2] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos + 3] = ((blueRed & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 4] = ((blueRed & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 5] = (blueRed & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 6] = (blueRed >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 7] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos + 8] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos + 9] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos + 10] = ((-11568914 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 11] = ((-11568914 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 12] = (-11568914 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 13] = (-11568914 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 14] = 0;
+	polyPainter_PolyPainter.verticesGrad[pos + 15] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos + 16] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos + 17] = ((-5320715 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 18] = ((-5320715 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 19] = (-5320715 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos + 20] = (-5320715 >>> 24) * 0.00392156862745098;
+	_this.posGradient = pos + 21;
+	polyPainter_PolyPainter.gradBufferIndex++;
+	var _this1 = Main.polyPainter;
+	if(_this1.shaderMode == 1) {
+		_this1.flush();
+	}
+	var pos1 = _this1.posGradient;
+	polyPainter_PolyPainter.verticesGrad[pos1] = 0;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 1] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 2] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 3] = ((-5320715 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 4] = ((-5320715 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 5] = (-5320715 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 6] = (-5320715 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 7] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 8] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 9] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 10] = ((-11568914 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 11] = ((-11568914 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 12] = (-11568914 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 13] = (-11568914 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 14] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 15] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 16] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 17] = ((-7558674 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 18] = ((-7558674 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 19] = (-7558674 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos1 + 20] = (-7558674 >>> 24) * 0.00392156862745098;
+	_this1.posGradient = pos1 + 21;
+	polyPainter_PolyPainter.gradBufferIndex++;
+	var _this2 = Main.polyPainter;
+	if(_this2.shaderMode == 1) {
+		_this2.flush();
+	}
+	var pos2 = _this2.posGradient;
+	polyPainter_PolyPainter.verticesGrad[pos2] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 1] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 2] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 3] = ((-11568914 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 4] = ((-11568914 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 5] = (-11568914 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 6] = (-11568914 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 7] = 800;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 8] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 9] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 10] = ((-14852116 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 11] = ((-14852116 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 12] = (-14852116 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 13] = (-14852116 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 14] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 15] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 16] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 17] = ((-7558674 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 18] = ((-7558674 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 19] = (-7558674 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos2 + 20] = (-7558674 >>> 24) * 0.00392156862745098;
+	_this2.posGradient = pos2 + 21;
+	polyPainter_PolyPainter.gradBufferIndex++;
+	var _this3 = Main.polyPainter;
+	if(_this3.shaderMode == 1) {
+		_this3.flush();
+	}
+	var pos3 = _this3.posGradient;
+	polyPainter_PolyPainter.verticesGrad[pos3] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 1] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 2] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 3] = ((-7558674 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 4] = ((-7558674 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 5] = (-7558674 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 6] = (-7558674 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 7] = 800;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 8] = topUp;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 9] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 10] = ((-14852116 & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 11] = ((-14852116 & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 12] = (-14852116 & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 13] = (-14852116 >>> 24) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 14] = 800;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 15] = 400;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 16] = -5.0;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 17] = ((blueGreen & 16711680) >>> 16) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 18] = ((blueGreen & 65280) >>> 8) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 19] = (blueGreen & 255) * 0.00392156862745098;
+	polyPainter_PolyPainter.verticesGrad[pos3 + 20] = (blueGreen >>> 24) * 0.00392156862745098;
+	_this3.posGradient = pos3 + 21;
+	polyPainter_PolyPainter.gradBufferIndex++;
 };
 Main.onLoaded = function() {
 	kha_Scheduler.addTimeTask(function() {
@@ -191,6 +420,8 @@ Main.main = function() {
 	kha_System.init({ title : "PolyPainter Example", width : 800, height : 600},function() {
 		Main.renderTarget = kha_Image.createRenderTarget(1024,768,null,0);
 		Main.polyPainter = new polyPainter_PolyPainter();
+		Main.polyPainter.textureAddressingX = kha_graphics4_TextureAddressing.Repeat;
+		Main.polyPainter.textureAddressingY = kha_graphics4_TextureAddressing.Repeat;
 		kha_Assets.loadEverything(Main.onLoaded);
 	});
 };
@@ -1929,43 +2160,13 @@ js_html_compat_Uint8Array._subarray = function(start,end) {
 	return a;
 };
 var kha__$Assets_ImageList = function() {
-	this.names = ["suma","pexel"];
-	this.pexelDescription = { files : ["pexel.jpg"], original_height : 1897, type : "image", original_width : 2371, name : "pexel"};
-	this.pexelName = "pexel";
-	this.pexel = null;
-	this.sumaDescription = { files : ["suma.jpg"], original_height : 2015, type : "image", original_width : 1511, name : "suma"};
-	this.sumaName = "suma";
-	this.suma = null;
+	this.names = [];
 };
 $hxClasses["kha._Assets.ImageList"] = kha__$Assets_ImageList;
 kha__$Assets_ImageList.__name__ = true;
 kha__$Assets_ImageList.prototype = {
 	get: function(name) {
 		return Reflect.field(this,name);
-	}
-	,suma: null
-	,sumaName: null
-	,sumaDescription: null
-	,sumaLoad: function(done) {
-		kha_Assets.loadImage("suma",function(image) {
-			done();
-		});
-	}
-	,sumaUnload: function() {
-		this.suma.unload();
-		this.suma = null;
-	}
-	,pexel: null
-	,pexelName: null
-	,pexelDescription: null
-	,pexelLoad: function(done) {
-		kha_Assets.loadImage("pexel",function(image) {
-			done();
-		});
-	}
-	,pexelUnload: function() {
-		this.pexel.unload();
-		this.pexel = null;
 	}
 	,names: null
 	,__class__: kha__$Assets_ImageList
@@ -3802,38 +4003,38 @@ kha_Shaders.init = function() {
 	var _g3 = 0;
 	while(_g3 < 3) {
 		var i3 = _g3++;
-		var data3 = Reflect.field(kha_Shaders,"painter_image_vertData" + i3);
+		var data3 = Reflect.field(kha_Shaders,"painter_text_fragData" + i3);
 		var bytes3 = haxe_Unserializer.run(data3);
 		blobs3.push(kha_internal_BytesBlob.fromBytes(bytes3));
 	}
-	kha_Shaders.painter_image_vert = new kha_graphics4_VertexShader(blobs3,["painter-image.vert.essl","painter-image-relaxed.vert.essl","painter-image-webgl2.vert.essl"]);
+	kha_Shaders.painter_text_frag = new kha_graphics4_FragmentShader(blobs3,["painter-text.frag.essl","painter-text-relaxed.frag.essl","painter-text-webgl2.frag.essl"]);
 	var blobs4 = [];
 	var _g4 = 0;
 	while(_g4 < 3) {
 		var i4 = _g4++;
-		var data4 = Reflect.field(kha_Shaders,"painter_text_fragData" + i4);
+		var data4 = Reflect.field(kha_Shaders,"painter_text_vertData" + i4);
 		var bytes4 = haxe_Unserializer.run(data4);
 		blobs4.push(kha_internal_BytesBlob.fromBytes(bytes4));
 	}
-	kha_Shaders.painter_text_frag = new kha_graphics4_FragmentShader(blobs4,["painter-text.frag.essl","painter-text-relaxed.frag.essl","painter-text-webgl2.frag.essl"]);
+	kha_Shaders.painter_text_vert = new kha_graphics4_VertexShader(blobs4,["painter-text.vert.essl","painter-text-relaxed.vert.essl","painter-text-webgl2.vert.essl"]);
 	var blobs5 = [];
 	var _g5 = 0;
 	while(_g5 < 3) {
 		var i5 = _g5++;
-		var data5 = Reflect.field(kha_Shaders,"painter_video_fragData" + i5);
+		var data5 = Reflect.field(kha_Shaders,"painter_image_vertData" + i5);
 		var bytes5 = haxe_Unserializer.run(data5);
 		blobs5.push(kha_internal_BytesBlob.fromBytes(bytes5));
 	}
-	kha_Shaders.painter_video_frag = new kha_graphics4_FragmentShader(blobs5,["painter-video.frag.essl","painter-video-relaxed.frag.essl","painter-video-webgl2.frag.essl"]);
+	kha_Shaders.painter_image_vert = new kha_graphics4_VertexShader(blobs5,["painter-image.vert.essl","painter-image-relaxed.vert.essl","painter-image-webgl2.vert.essl"]);
 	var blobs6 = [];
 	var _g6 = 0;
 	while(_g6 < 3) {
 		var i6 = _g6++;
-		var data6 = Reflect.field(kha_Shaders,"painter_text_vertData" + i6);
+		var data6 = Reflect.field(kha_Shaders,"painter_video_fragData" + i6);
 		var bytes6 = haxe_Unserializer.run(data6);
 		blobs6.push(kha_internal_BytesBlob.fromBytes(bytes6));
 	}
-	kha_Shaders.painter_text_vert = new kha_graphics4_VertexShader(blobs6,["painter-text.vert.essl","painter-text-relaxed.vert.essl","painter-text-webgl2.vert.essl"]);
+	kha_Shaders.painter_video_frag = new kha_graphics4_FragmentShader(blobs6,["painter-video.frag.essl","painter-video-relaxed.frag.essl","painter-video-webgl2.frag.essl"]);
 	var blobs7 = [];
 	var _g7 = 0;
 	while(_g7 < 3) {
@@ -17721,7 +17922,9 @@ kha_graphics4_ColoredShaderPainter.prototype = {
 	}
 	,drawBuffer: function(trisDone) {
 		if(!trisDone) {
-			this.endTris(true);
+			if(kha_graphics4_ColoredShaderPainter.triangleBufferIndex > 0) {
+				this.drawTriBuffer(true);
+			}
 		}
 		kha_graphics4_ColoredShaderPainter.rectVertexBuffer.unlock();
 		this.g.setVertexBuffer(kha_graphics4_ColoredShaderPainter.rectVertexBuffer);
@@ -23301,19 +23504,21 @@ kha_vr_TimeWarpParms.prototype = {
 var polyPainter_PolyPainter = function() {
 	this.destinationBlend = kha_graphics4_BlendingFactor.Undefined;
 	this.sourceBlend = kha_graphics4_BlendingFactor.Undefined;
-	this.writePosGradient = 0;
-	this.writePosImage = 0;
+	this.posGradient = 0;
+	this.posImage = 0;
 	this.myPipeline = null;
 	this.bilinearMipmaps = false;
 	this.bilinear = false;
 	this.shaderMode = 1;
-	polyPainter_PolyPainter.bufferIndexGradient = 0;
-	polyPainter_PolyPainter.bufferIndexImage = 0;
+	this.textureAddressingY = kha_graphics4_TextureAddressing.Clamp;
+	this.textureAddressingX = kha_graphics4_TextureAddressing.Clamp;
+	polyPainter_PolyPainter.gradBufferIndex = 0;
+	polyPainter_PolyPainter.imgBufferIndex = 0;
 	polyPainter_PolyPainter.initShaders();
 	this.initBuffers();
-	this.projectionLocationImage = polyPainter_PolyPainter.shaderPipelineImage.getConstantLocation("projectionMatrix");
-	this.projectionLocationGradient = polyPainter_PolyPainter.shaderPipelineGradient.getConstantLocation("projectionMatrix");
-	this.textureLocation = polyPainter_PolyPainter.shaderPipelineImage.getTextureUnit("tex");
+	this.imgProjMatrix = polyPainter_PolyPainter.imagePipe.getConstantLocation("projectionMatrix");
+	this.gradProjMatrix = polyPainter_PolyPainter.gradientPipe.getConstantLocation("projectionMatrix");
+	this.textureLocation = polyPainter_PolyPainter.imagePipe.getTextureUnit("tex");
 };
 $hxClasses["polyPainter.PolyPainter"] = polyPainter_PolyPainter;
 polyPainter_PolyPainter.__name__ = true;
@@ -23327,320 +23532,59 @@ polyPainter_PolyPainter.upperPowerOfTwo = function(v) {
 	return ++v;
 };
 polyPainter_PolyPainter.initShaders = function() {
-	polyPainter_PolyPainter.initImageShader();
-	polyPainter_PolyPainter.initGradientShader();
-};
-polyPainter_PolyPainter.initImageShader = function() {
-	if(polyPainter_PolyPainter.structureImage == null) {
-		polyPainter_PolyPainter.structureImage = kha_graphics4_Graphics2.createImageVertexStructure();
+	if(polyPainter_PolyPainter.strucImg == null) {
+		polyPainter_PolyPainter.strucImg = new kha_graphics4_VertexStructure();
+		polyPainter_PolyPainter.strucImg.add("vertexPosition",kha_graphics4_VertexData.Float3);
+		polyPainter_PolyPainter.strucImg.add("texPosition",kha_graphics4_VertexData.Float2);
+		polyPainter_PolyPainter.strucImg.add("vertexColor",kha_graphics4_VertexData.Float4);
 	}
-	if(polyPainter_PolyPainter.shaderPipelineImage == null) {
-		polyPainter_PolyPainter.shaderPipelineImage = kha_graphics4_Graphics2.createImagePipeline(polyPainter_PolyPainter.structureImage);
-		polyPainter_PolyPainter.shaderPipelineImage.compile();
+	if(polyPainter_PolyPainter.imagePipe == null) {
+		polyPainter_PolyPainter.imagePipe = new kha_graphics4_PipelineState();
+		polyPainter_PolyPainter.imagePipe.fragmentShader = kha_Shaders.painter_image_frag;
+		polyPainter_PolyPainter.imagePipe.vertexShader = kha_Shaders.painter_image_vert;
+		polyPainter_PolyPainter.imagePipe.inputLayout = [polyPainter_PolyPainter.strucImg];
+		polyPainter_PolyPainter.imagePipe.blendSource = kha_graphics4_BlendingFactor.BlendOne;
+		polyPainter_PolyPainter.imagePipe.alphaBlendSource = kha_graphics4_BlendingFactor.BlendOne;
+		polyPainter_PolyPainter.imagePipe.blendDestination = kha_graphics4_BlendingFactor.InverseSourceAlpha;
+		polyPainter_PolyPainter.imagePipe.alphaBlendDestination = kha_graphics4_BlendingFactor.InverseSourceAlpha;
+		polyPainter_PolyPainter.imagePipe.compile();
 	}
-};
-polyPainter_PolyPainter.initGradientShader = function() {
-	if(polyPainter_PolyPainter.structureGradient == null) {
-		polyPainter_PolyPainter.structureGradient = kha_graphics4_Graphics2.createColoredVertexStructure();
+	if(polyPainter_PolyPainter.strucGrad == null) {
+		polyPainter_PolyPainter.strucGrad = new kha_graphics4_VertexStructure();
+		polyPainter_PolyPainter.strucGrad.add("vertexPosition",kha_graphics4_VertexData.Float3);
+		polyPainter_PolyPainter.strucGrad.add("vertexColor",kha_graphics4_VertexData.Float4);
 	}
-	if(polyPainter_PolyPainter.shaderPipelineGradient == null) {
-		polyPainter_PolyPainter.shaderPipelineGradient = kha_graphics4_Graphics2.createColoredPipeline(polyPainter_PolyPainter.structureGradient);
-		polyPainter_PolyPainter.shaderPipelineGradient.compile();
+	if(polyPainter_PolyPainter.gradientPipe == null) {
+		polyPainter_PolyPainter.gradientPipe = new kha_graphics4_PipelineState();
+		polyPainter_PolyPainter.gradientPipe.fragmentShader = kha_Shaders.painter_colored_frag;
+		polyPainter_PolyPainter.gradientPipe.vertexShader = kha_Shaders.painter_colored_vert;
+		polyPainter_PolyPainter.gradientPipe.inputLayout = [polyPainter_PolyPainter.strucGrad];
+		polyPainter_PolyPainter.gradientPipe.blendSource = kha_graphics4_BlendingFactor.SourceAlpha;
+		polyPainter_PolyPainter.gradientPipe.alphaBlendSource = kha_graphics4_BlendingFactor.SourceAlpha;
+		polyPainter_PolyPainter.gradientPipe.blendDestination = kha_graphics4_BlendingFactor.InverseSourceAlpha;
+		polyPainter_PolyPainter.gradientPipe.alphaBlendDestination = kha_graphics4_BlendingFactor.InverseSourceAlpha;
+		polyPainter_PolyPainter.gradientPipe.compile();
 	}
 };
 polyPainter_PolyPainter.prototype = {
 	projectionMatrix: null
+	,textureAddressingX: null
+	,textureAddressingY: null
 	,shaderMode: null
 	,bilinear: null
 	,bilinearMipmaps: null
 	,g: null
 	,myPipeline: null
-	,projectionLocationImage: null
+	,imgProjMatrix: null
 	,textureLocation: null
-	,projectionLocationGradient: null
+	,gradProjMatrix: null
 	,isFramebuffer: null
 	,width: null
 	,height: null
-	,writePosImage: null
-	,writePosGradient: null
+	,posImage: null
+	,posGradient: null
 	,sourceBlend: null
 	,destinationBlend: null
-	,setProjection: function(projectionMatrix) {
-		this.projectionMatrix = projectionMatrix;
-	}
-	,get_pipeline: function() {
-		return this.myPipeline;
-	}
-	,set_pipeline: function(pipe) {
-		if(pipe != this.myPipeline) {
-			this.flush();
-		}
-		if(pipe == null) {
-			this.projectionLocationImage = polyPainter_PolyPainter.shaderPipelineImage.getConstantLocation("projectionMatrix");
-			this.textureLocation = polyPainter_PolyPainter.shaderPipelineImage.getTextureUnit("tex");
-		} else if(pipe == polyPainter_PolyPainter.shaderPipelineGradient) {
-			this.projectionLocationImage = pipe.getConstantLocation("projectionMatrix");
-		} else {
-			this.projectionLocationImage = pipe.getConstantLocation("projectionMatrix");
-			this.textureLocation = pipe.getTextureUnit("tex");
-		}
-		return this.myPipeline = pipe;
-	}
-	,initBuffers: function() {
-		this.initBuffersImage();
-		this.initBuffersGradient();
-	}
-	,initBuffersImage: function() {
-		if(polyPainter_PolyPainter.vertexBufferImage == null) {
-			polyPainter_PolyPainter.vertexBufferImage = new kha_graphics4_VertexBuffer(1500,polyPainter_PolyPainter.structureImage,kha_graphics4_Usage.DynamicUsage);
-			polyPainter_PolyPainter.verticesImage = polyPainter_PolyPainter.vertexBufferImage.lock();
-			polyPainter_PolyPainter.indexBufferImage = new kha_graphics4_IndexBuffer(4500,kha_graphics4_Usage.StaticUsage);
-			var indicesImage = polyPainter_PolyPainter.indexBufferImage.lock();
-			var _g1 = 0;
-			var _g = 4500;
-			while(_g1 < _g) {
-				var i = _g1++;
-				indicesImage[i * 3] = i * 3;
-				indicesImage[i * 3 + 1] = i * 3 + 1;
-				indicesImage[i * 3 + 2] = i * 3 + 2;
-			}
-			polyPainter_PolyPainter.indexBufferImage.unlock();
-		}
-	}
-	,initBuffersGradient: function() {
-		if(polyPainter_PolyPainter.vertexBufferGradient == null) {
-			polyPainter_PolyPainter.vertexBufferGradient = new kha_graphics4_VertexBuffer(1500,polyPainter_PolyPainter.structureGradient,kha_graphics4_Usage.DynamicUsage);
-			polyPainter_PolyPainter.verticesGradient = polyPainter_PolyPainter.vertexBufferGradient.lock();
-			polyPainter_PolyPainter.indexBufferGradient = new kha_graphics4_IndexBuffer(4500,kha_graphics4_Usage.StaticUsage);
-			var indicesGradient = polyPainter_PolyPainter.indexBufferGradient.lock();
-			var _g1 = 0;
-			var _g = 4500;
-			while(_g1 < _g) {
-				var i = _g1++;
-				indicesGradient[i * 3] = i * 3;
-				indicesGradient[i * 3 + 1] = i * 3 + 1;
-				indicesGradient[i * 3 + 2] = i * 3 + 2;
-			}
-			polyPainter_PolyPainter.indexBufferGradient.unlock();
-		}
-	}
-	,drawFillTriangle: function(ax,ay,bx,by,cx,cy,color) {
-		if(this.shaderMode == 1) {
-			this.flush();
-		}
-		var writePos = this.writePosGradient;
-		polyPainter_PolyPainter.verticesGradient[writePos] = ax;
-		polyPainter_PolyPainter.verticesGradient[writePos + 1] = ay;
-		polyPainter_PolyPainter.verticesGradient[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesGradient[writePos + 3] = ((color & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 4] = ((color & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 5] = (color & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 6] = (color >>> 24) * 0.00392156862745098;
-		writePos += 7;
-		polyPainter_PolyPainter.verticesGradient[writePos] = bx;
-		polyPainter_PolyPainter.verticesGradient[writePos + 1] = by;
-		polyPainter_PolyPainter.verticesGradient[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesGradient[writePos + 3] = ((color & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 4] = ((color & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 5] = (color & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 6] = (color >>> 24) * 0.00392156862745098;
-		writePos += 7;
-		polyPainter_PolyPainter.verticesGradient[writePos] = cx;
-		polyPainter_PolyPainter.verticesGradient[writePos + 1] = cy;
-		polyPainter_PolyPainter.verticesGradient[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesGradient[writePos + 3] = ((color & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 4] = ((color & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 5] = (color & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 6] = (color >>> 24) * 0.00392156862745098;
-		writePos += 7;
-		this.writePosGradient = writePos;
-		polyPainter_PolyPainter.bufferIndexGradient++;
-	}
-	,drawGradientTriangle: function(ax,ay,bx,by,cx,cy,color0,color1,color2) {
-		if(this.shaderMode == 1) {
-			this.flush();
-		}
-		var writePos = this.writePosGradient;
-		polyPainter_PolyPainter.verticesGradient[writePos] = ax;
-		polyPainter_PolyPainter.verticesGradient[writePos + 1] = ay;
-		polyPainter_PolyPainter.verticesGradient[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesGradient[writePos + 3] = ((color0 & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 4] = ((color0 & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 5] = (color0 & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 6] = (color0 >>> 24) * 0.00392156862745098;
-		writePos += 7;
-		polyPainter_PolyPainter.verticesGradient[writePos] = bx;
-		polyPainter_PolyPainter.verticesGradient[writePos + 1] = by;
-		polyPainter_PolyPainter.verticesGradient[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesGradient[writePos + 3] = ((color1 & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 4] = ((color1 & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 5] = (color1 & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 6] = (color1 >>> 24) * 0.00392156862745098;
-		writePos += 7;
-		polyPainter_PolyPainter.verticesGradient[writePos] = cx;
-		polyPainter_PolyPainter.verticesGradient[writePos + 1] = cy;
-		polyPainter_PolyPainter.verticesGradient[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesGradient[writePos + 3] = ((color2 & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 4] = ((color2 & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 5] = (color2 & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesGradient[writePos + 6] = (color2 >>> 24) * 0.00392156862745098;
-		writePos += 7;
-		this.writePosGradient = writePos;
-		polyPainter_PolyPainter.bufferIndexGradient++;
-	}
-	,drawImageTriangle: function(ax,ay,bx,by,cx,cy,au,av,bu,bv,cu,cv,img,alpha) {
-		if(alpha == null) {
-			alpha = 1.;
-		}
-		var color = -1;
-		if(alpha != 1.) {
-			color = (alpha * 255 | 0) << 24 | (((color & 16711680) >>> 16) * 0.00392156862745098 * 255 | 0) << 16 | (((color & 65280) >>> 8) * 0.00392156862745098 * 255 | 0) << 8 | ((color & 255) * 0.00392156862745098 * 255 | 0);
-		}
-		if(polyPainter_PolyPainter.lastTexture != img || this.shaderMode == 0) {
-			this.flush();
-		}
-		polyPainter_PolyPainter.lastTexture = img;
-		var writePos = this.writePosImage;
-		polyPainter_PolyPainter.verticesImage[writePos] = ax;
-		polyPainter_PolyPainter.verticesImage[writePos + 1] = ay;
-		polyPainter_PolyPainter.verticesImage[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesImage[writePos + 3] = au;
-		polyPainter_PolyPainter.verticesImage[writePos + 4] = av;
-		polyPainter_PolyPainter.verticesImage[writePos + 5] = ((color & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 6] = ((color & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 7] = (color & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 8] = (color >>> 24) * 0.00392156862745098;
-		writePos += 9;
-		polyPainter_PolyPainter.verticesImage[writePos] = bx;
-		polyPainter_PolyPainter.verticesImage[writePos + 1] = by;
-		polyPainter_PolyPainter.verticesImage[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesImage[writePos + 3] = bu;
-		polyPainter_PolyPainter.verticesImage[writePos + 4] = bv;
-		polyPainter_PolyPainter.verticesImage[writePos + 5] = ((color & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 6] = ((color & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 7] = (color & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 8] = (color >>> 24) * 0.00392156862745098;
-		writePos += 9;
-		polyPainter_PolyPainter.verticesImage[writePos] = cx;
-		polyPainter_PolyPainter.verticesImage[writePos + 1] = cy;
-		polyPainter_PolyPainter.verticesImage[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesImage[writePos + 3] = cu;
-		polyPainter_PolyPainter.verticesImage[writePos + 4] = cv;
-		polyPainter_PolyPainter.verticesImage[writePos + 5] = ((color & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 6] = ((color & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 7] = (color & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 8] = (color >>> 24) * 0.00392156862745098;
-		writePos += 9;
-		this.writePosImage = writePos;
-		polyPainter_PolyPainter.bufferIndexImage++;
-	}
-	,drawImageTriangleGradient: function(ax,ay,bx,by,cx,cy,au,av,bu,bv,cu,cv,img,colorA,colorB,colorC) {
-		if(polyPainter_PolyPainter.lastTexture != img || this.shaderMode == 0) {
-			this.flush();
-		}
-		polyPainter_PolyPainter.lastTexture = img;
-		var writePos = this.writePosImage;
-		polyPainter_PolyPainter.verticesImage[writePos] = ax;
-		polyPainter_PolyPainter.verticesImage[writePos + 1] = ay;
-		polyPainter_PolyPainter.verticesImage[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesImage[writePos + 3] = au;
-		polyPainter_PolyPainter.verticesImage[writePos + 4] = av;
-		polyPainter_PolyPainter.verticesImage[writePos + 5] = ((colorA & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 6] = ((colorA & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 7] = (colorA & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 8] = (colorA >>> 24) * 0.00392156862745098;
-		writePos += 9;
-		polyPainter_PolyPainter.verticesImage[writePos] = bx;
-		polyPainter_PolyPainter.verticesImage[writePos + 1] = by;
-		polyPainter_PolyPainter.verticesImage[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesImage[writePos + 3] = bu;
-		polyPainter_PolyPainter.verticesImage[writePos + 4] = bv;
-		polyPainter_PolyPainter.verticesImage[writePos + 5] = ((colorB & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 6] = ((colorB & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 7] = (colorB & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 8] = (colorB >>> 24) * 0.00392156862745098;
-		writePos += 9;
-		polyPainter_PolyPainter.verticesImage[writePos] = cx;
-		polyPainter_PolyPainter.verticesImage[writePos + 1] = cy;
-		polyPainter_PolyPainter.verticesImage[writePos + 2] = -5.0;
-		polyPainter_PolyPainter.verticesImage[writePos + 3] = cu;
-		polyPainter_PolyPainter.verticesImage[writePos + 4] = cv;
-		polyPainter_PolyPainter.verticesImage[writePos + 5] = ((colorC & 16711680) >>> 16) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 6] = ((colorC & 65280) >>> 8) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 7] = (colorC & 255) * 0.00392156862745098;
-		polyPainter_PolyPainter.verticesImage[writePos + 8] = (colorC >>> 24) * 0.00392156862745098;
-		writePos += 9;
-		this.writePosImage = writePos;
-		polyPainter_PolyPainter.bufferIndexImage++;
-	}
-	,framebuffer: null
-	,set_framebuffer: function(f) {
-		this.g = f.get_g4();
-		this.isFramebuffer = true;
-		this.width = f.get_width();
-		this.height = f.get_height();
-		this.shaderMode = 1;
-		return f;
-	}
-	,canvas: null
-	,set_canvas: function(c) {
-		this.g = c.get_g4();
-		this.isFramebuffer = false;
-		this.width = c.get_width();
-		this.height = c.get_height();
-		this.shaderMode = 0;
-		return c;
-	}
-	,getProjectionMatrix: function() {
-		if(this.isFramebuffer) {
-			this.projectionMatrix = kha_math_FastMatrix4.orthogonalProjection(0,this.width,this.height,0,0.1,1000);
-		} else {
-			if(!kha_Image.get_nonPow2Supported()) {
-				this.width = polyPainter_PolyPainter.upperPowerOfTwo(this.width);
-				this.height = polyPainter_PolyPainter.upperPowerOfTwo(this.height);
-			}
-			if(this.g.renderTargetsInvertedY()) {
-				this.projectionMatrix = kha_math_FastMatrix4.orthogonalProjection(0,this.width,0,this.height,0.1,1000);
-			} else {
-				this.projectionMatrix = kha_math_FastMatrix4.orthogonalProjection(0,this.width,this.height,0,0.1,1000);
-			}
-		}
-	}
-	,setPipeline: function(pipeline) {
-		this.set_pipeline(pipeline);
-		if(pipeline != null) {
-			this.g.setPipeline(pipeline);
-		}
-	}
-	,drawBuffer: function() {
-		this.drawBufferImage();
-		this.drawBufferGradient();
-	}
-	,drawBufferGradient: function() {
-		polyPainter_PolyPainter.vertexBufferGradient.unlock();
-		this.g.setVertexBuffer(polyPainter_PolyPainter.vertexBufferGradient);
-		this.g.setIndexBuffer(polyPainter_PolyPainter.indexBufferGradient);
-		this.g.setPipeline(polyPainter_PolyPainter.shaderPipelineGradient);
-		this.g.setMatrix(this.projectionLocationGradient,this.projectionMatrix);
-		this.g.drawIndexedVertices(0,polyPainter_PolyPainter.bufferIndexGradient * 3);
-		polyPainter_PolyPainter.bufferIndexGradient = 0;
-		this.writePosGradient = 0;
-		polyPainter_PolyPainter.verticesGradient = polyPainter_PolyPainter.vertexBufferGradient.lock();
-	}
-	,drawBufferImage: function() {
-		polyPainter_PolyPainter.vertexBufferImage.unlock();
-		this.g.setVertexBuffer(polyPainter_PolyPainter.vertexBufferImage);
-		this.g.setIndexBuffer(polyPainter_PolyPainter.indexBufferImage);
-		this.g.setPipeline(polyPainter_PolyPainter.shaderPipelineImage);
-		this.g.setTexture(this.textureLocation,polyPainter_PolyPainter.lastTexture);
-		this.g.setTextureParameters(this.textureLocation,kha_graphics4_TextureAddressing.Clamp,kha_graphics4_TextureAddressing.Clamp,this.bilinear ? kha_graphics4_TextureFilter.LinearFilter : kha_graphics4_TextureFilter.PointFilter,this.bilinear ? kha_graphics4_TextureFilter.LinearFilter : kha_graphics4_TextureFilter.PointFilter,this.bilinearMipmaps ? kha_graphics4_MipMapFilter.LinearMipFilter : kha_graphics4_MipMapFilter.NoMipFilter);
-		this.g.setMatrix(this.projectionLocationImage,this.projectionMatrix);
-		this.g.drawIndexedVertices(0,polyPainter_PolyPainter.bufferIndexImage * 3);
-		this.g.setTexture(this.textureLocation,null);
-		polyPainter_PolyPainter.bufferIndexImage = 0;
-		this.writePosImage = 0;
-		polyPainter_PolyPainter.verticesImage = polyPainter_PolyPainter.vertexBufferImage.lock();
-	}
 	,begin: function(clear,clearColor) {
 		if(clear == null) {
 			clear = true;
@@ -23668,11 +23612,273 @@ polyPainter_PolyPainter.prototype = {
 		this.flush();
 		this.g.end();
 	}
-	,flush: function() {
-		if(polyPainter_PolyPainter.bufferIndexImage > 0) {
+	,setProjection: function(projectionMatrix) {
+		this.projectionMatrix = projectionMatrix;
+	}
+	,get_pipeline: function() {
+		return this.myPipeline;
+	}
+	,set_pipeline: function(pipe) {
+		if(pipe != this.myPipeline) {
+			this.flush();
+		}
+		if(pipe == null) {
+			this.imgProjMatrix = polyPainter_PolyPainter.imagePipe.getConstantLocation("projectionMatrix");
+			this.textureLocation = polyPainter_PolyPainter.imagePipe.getTextureUnit("tex");
+		} else if(pipe == polyPainter_PolyPainter.gradientPipe) {
+			this.imgProjMatrix = pipe.getConstantLocation("projectionMatrix");
+		} else {
+			this.imgProjMatrix = pipe.getConstantLocation("projectionMatrix");
+			this.textureLocation = pipe.getTextureUnit("tex");
+		}
+		return this.myPipeline = pipe;
+	}
+	,initBuffers: function() {
+		if(polyPainter_PolyPainter.vertexBufferImage == null) {
+			polyPainter_PolyPainter.vertexBufferImage = new kha_graphics4_VertexBuffer(1500,polyPainter_PolyPainter.strucImg,kha_graphics4_Usage.DynamicUsage);
+			polyPainter_PolyPainter.verticesImg = polyPainter_PolyPainter.vertexBufferImage.lock();
+			polyPainter_PolyPainter.indexBufferImg = new kha_graphics4_IndexBuffer(4500,kha_graphics4_Usage.StaticUsage);
+			var indicesImage = polyPainter_PolyPainter.indexBufferImg.lock();
+			var _g1 = 0;
+			var _g = 4500;
+			while(_g1 < _g) {
+				var i = _g1++;
+				indicesImage[i * 3] = i * 3;
+				indicesImage[i * 3 + 1] = i * 3 + 1;
+				indicesImage[i * 3 + 2] = i * 3 + 2;
+			}
+			polyPainter_PolyPainter.indexBufferImg.unlock();
+		}
+		if(polyPainter_PolyPainter.vertexBufferGradient == null) {
+			polyPainter_PolyPainter.vertexBufferGradient = new kha_graphics4_VertexBuffer(1500,polyPainter_PolyPainter.strucGrad,kha_graphics4_Usage.DynamicUsage);
+			polyPainter_PolyPainter.verticesGrad = polyPainter_PolyPainter.vertexBufferGradient.lock();
+			polyPainter_PolyPainter.indexBufferGrad = new kha_graphics4_IndexBuffer(4500,kha_graphics4_Usage.StaticUsage);
+			var indicesGradient = polyPainter_PolyPainter.indexBufferGrad.lock();
+			var _g11 = 0;
+			var _g2 = 4500;
+			while(_g11 < _g2) {
+				var i1 = _g11++;
+				indicesGradient[i1 * 3] = i1 * 3;
+				indicesGradient[i1 * 3 + 1] = i1 * 3 + 1;
+				indicesGradient[i1 * 3 + 2] = i1 * 3 + 2;
+			}
+			polyPainter_PolyPainter.indexBufferGrad.unlock();
+		}
+	}
+	,drawFillTriangle: function(ax,ay,bx,by,cx,cy,color) {
+		if(this.shaderMode == 1) {
+			this.flush();
+		}
+		var pos = this.posGradient;
+		polyPainter_PolyPainter.verticesGrad[pos] = ax;
+		polyPainter_PolyPainter.verticesGrad[pos + 1] = ay;
+		polyPainter_PolyPainter.verticesGrad[pos + 2] = -5.0;
+		polyPainter_PolyPainter.verticesGrad[pos + 3] = ((color & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 4] = ((color & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 5] = (color & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 6] = (color >>> 24) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 7] = bx;
+		polyPainter_PolyPainter.verticesGrad[pos + 8] = by;
+		polyPainter_PolyPainter.verticesGrad[pos + 9] = -5.0;
+		polyPainter_PolyPainter.verticesGrad[pos + 10] = ((color & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 11] = ((color & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 12] = (color & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 13] = (color >>> 24) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 14] = cx;
+		polyPainter_PolyPainter.verticesGrad[pos + 15] = cy;
+		polyPainter_PolyPainter.verticesGrad[pos + 16] = -5.0;
+		polyPainter_PolyPainter.verticesGrad[pos + 17] = ((color & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 18] = ((color & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 19] = (color & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 20] = (color >>> 24) * 0.00392156862745098;
+		this.posGradient = pos + 21;
+		polyPainter_PolyPainter.gradBufferIndex++;
+	}
+	,drawGradientTriangle: function(ax,ay,bx,by,cx,cy,color0,color1,color2) {
+		if(this.shaderMode == 1) {
+			this.flush();
+		}
+		var pos = this.posGradient;
+		polyPainter_PolyPainter.verticesGrad[pos] = ax;
+		polyPainter_PolyPainter.verticesGrad[pos + 1] = ay;
+		polyPainter_PolyPainter.verticesGrad[pos + 2] = -5.0;
+		polyPainter_PolyPainter.verticesGrad[pos + 3] = ((color0 & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 4] = ((color0 & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 5] = (color0 & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 6] = (color0 >>> 24) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 7] = bx;
+		polyPainter_PolyPainter.verticesGrad[pos + 8] = by;
+		polyPainter_PolyPainter.verticesGrad[pos + 9] = -5.0;
+		polyPainter_PolyPainter.verticesGrad[pos + 10] = ((color1 & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 11] = ((color1 & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 12] = (color1 & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 13] = (color1 >>> 24) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 14] = cx;
+		polyPainter_PolyPainter.verticesGrad[pos + 15] = cy;
+		polyPainter_PolyPainter.verticesGrad[pos + 16] = -5.0;
+		polyPainter_PolyPainter.verticesGrad[pos + 17] = ((color2 & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 18] = ((color2 & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 19] = (color2 & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesGrad[pos + 20] = (color2 >>> 24) * 0.00392156862745098;
+		this.posGradient = pos + 21;
+		polyPainter_PolyPainter.gradBufferIndex++;
+	}
+	,drawImageTriangle: function(ax,ay,bx,by,cx,cy,au,av,bu,bv,cu,cv,img,alpha) {
+		if(alpha == null) {
+			alpha = 1.;
+		}
+		var color = -1;
+		if(alpha != 1.) {
+			color = (alpha * 255 | 0) << 24 | (((color & 16711680) >>> 16) * 0.00392156862745098 * 255 | 0) << 16 | (((color & 65280) >>> 8) * 0.00392156862745098 * 255 | 0) << 8 | ((color & 255) * 0.00392156862745098 * 255 | 0);
+		}
+		if(polyPainter_PolyPainter.imgLast != img || this.shaderMode == 0) {
+			this.flush();
+		}
+		polyPainter_PolyPainter.imgLast = img;
+		var pos = this.posImage;
+		polyPainter_PolyPainter.verticesImg[pos] = ax;
+		polyPainter_PolyPainter.verticesImg[pos + 1] = ay;
+		polyPainter_PolyPainter.verticesImg[pos + 2] = -5.0;
+		polyPainter_PolyPainter.verticesImg[pos + 3] = au;
+		polyPainter_PolyPainter.verticesImg[pos + 4] = av;
+		polyPainter_PolyPainter.verticesImg[pos + 5] = ((color & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 6] = ((color & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 7] = (color & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 8] = (color >>> 24) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 9] = bx;
+		polyPainter_PolyPainter.verticesImg[pos + 10] = by;
+		polyPainter_PolyPainter.verticesImg[pos + 11] = -5.0;
+		polyPainter_PolyPainter.verticesImg[pos + 12] = bu;
+		polyPainter_PolyPainter.verticesImg[pos + 13] = bv;
+		polyPainter_PolyPainter.verticesImg[pos + 14] = ((color & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 15] = ((color & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 16] = (color & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 17] = (color >>> 24) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 18] = cx;
+		polyPainter_PolyPainter.verticesImg[pos + 19] = cy;
+		polyPainter_PolyPainter.verticesImg[pos + 20] = -5.0;
+		polyPainter_PolyPainter.verticesImg[pos + 21] = cu;
+		polyPainter_PolyPainter.verticesImg[pos + 22] = cv;
+		polyPainter_PolyPainter.verticesImg[pos + 23] = ((color & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 24] = ((color & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 25] = (color & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 26] = (color >>> 24) * 0.00392156862745098;
+		this.posImage = pos + 27;
+		polyPainter_PolyPainter.imgBufferIndex++;
+	}
+	,drawImageTriangleGradient: function(ax,ay,bx,by,cx,cy,au,av,bu,bv,cu,cv,img,colorA,colorB,colorC) {
+		if(polyPainter_PolyPainter.imgLast != img || this.shaderMode == 0) {
+			this.flush();
+		}
+		polyPainter_PolyPainter.imgLast = img;
+		var pos = this.posImage;
+		polyPainter_PolyPainter.verticesImg[pos] = ax;
+		polyPainter_PolyPainter.verticesImg[pos + 1] = ay;
+		polyPainter_PolyPainter.verticesImg[pos + 2] = -5.0;
+		polyPainter_PolyPainter.verticesImg[pos + 3] = au;
+		polyPainter_PolyPainter.verticesImg[pos + 4] = av;
+		polyPainter_PolyPainter.verticesImg[pos + 5] = ((colorA & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 6] = ((colorA & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 7] = (colorA & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 8] = (colorA >>> 24) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 9] = bx;
+		polyPainter_PolyPainter.verticesImg[pos + 10] = by;
+		polyPainter_PolyPainter.verticesImg[pos + 11] = -5.0;
+		polyPainter_PolyPainter.verticesImg[pos + 12] = bu;
+		polyPainter_PolyPainter.verticesImg[pos + 13] = bv;
+		polyPainter_PolyPainter.verticesImg[pos + 14] = ((colorB & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 15] = ((colorB & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 16] = (colorB & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 17] = (colorB >>> 24) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 18] = cx;
+		polyPainter_PolyPainter.verticesImg[pos + 19] = cy;
+		polyPainter_PolyPainter.verticesImg[pos + 20] = -5.0;
+		polyPainter_PolyPainter.verticesImg[pos + 21] = cu;
+		polyPainter_PolyPainter.verticesImg[pos + 22] = cv;
+		polyPainter_PolyPainter.verticesImg[pos + 23] = ((colorC & 16711680) >>> 16) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 24] = ((colorC & 65280) >>> 8) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 25] = (colorC & 255) * 0.00392156862745098;
+		polyPainter_PolyPainter.verticesImg[pos + 26] = (colorC >>> 24) * 0.00392156862745098;
+		this.posImage = pos + 27;
+		polyPainter_PolyPainter.imgBufferIndex++;
+	}
+	,framebuffer: null
+	,set_framebuffer: function(f) {
+		this.g = f.get_g4();
+		this.isFramebuffer = true;
+		this.shaderMode = 1;
+		this.width = f.get_width();
+		this.height = f.get_height();
+		return f;
+	}
+	,canvas: null
+	,set_canvas: function(c) {
+		this.g = c.get_g4();
+		this.isFramebuffer = false;
+		this.shaderMode = 0;
+		this.width = c.get_width();
+		this.height = c.get_height();
+		return c;
+	}
+	,getProjectionMatrix: function() {
+		if(this.isFramebuffer) {
+			this.projectionMatrix = kha_math_FastMatrix4.orthogonalProjection(0,this.width,this.height,0,0.1,1000);
+		} else {
+			if(!kha_Image.get_nonPow2Supported()) {
+				this.width = polyPainter_PolyPainter.upperPowerOfTwo(this.width);
+				this.height = polyPainter_PolyPainter.upperPowerOfTwo(this.height);
+			}
+			if(this.g.renderTargetsInvertedY()) {
+				this.projectionMatrix = kha_math_FastMatrix4.orthogonalProjection(0,this.width,0,this.height,0.1,1000);
+			} else {
+				this.projectionMatrix = kha_math_FastMatrix4.orthogonalProjection(0,this.width,this.height,0,0.1,1000);
+			}
+		}
+	}
+	,setPipeline: function(pipeline) {
+		this.set_pipeline(pipeline);
+		if(pipeline != null) {
+			this.g.setPipeline(pipeline);
+		}
+	}
+	,drawBuffer: function() {
+		if(polyPainter_PolyPainter.imgBufferIndex > 0) {
 			this.drawBufferImage();
 		}
-		if(polyPainter_PolyPainter.bufferIndexGradient > 0) {
+		if(polyPainter_PolyPainter.gradBufferIndex > 0) {
+			this.drawBufferGradient();
+		}
+	}
+	,drawBufferGradient: function() {
+		polyPainter_PolyPainter.vertexBufferGradient.unlock();
+		this.g.setVertexBuffer(polyPainter_PolyPainter.vertexBufferGradient);
+		this.g.setIndexBuffer(polyPainter_PolyPainter.indexBufferGrad);
+		this.g.setPipeline(polyPainter_PolyPainter.gradientPipe);
+		this.g.setMatrix(this.gradProjMatrix,this.projectionMatrix);
+		this.g.drawIndexedVertices(0,polyPainter_PolyPainter.gradBufferIndex * 3);
+		polyPainter_PolyPainter.gradBufferIndex = 0;
+		this.posGradient = 0;
+		polyPainter_PolyPainter.verticesGrad = polyPainter_PolyPainter.vertexBufferGradient.lock();
+	}
+	,drawBufferImage: function() {
+		polyPainter_PolyPainter.vertexBufferImage.unlock();
+		this.g.setVertexBuffer(polyPainter_PolyPainter.vertexBufferImage);
+		this.g.setIndexBuffer(polyPainter_PolyPainter.indexBufferImg);
+		this.g.setPipeline(polyPainter_PolyPainter.imagePipe);
+		this.g.setTexture(this.textureLocation,polyPainter_PolyPainter.imgLast);
+		this.g.setTextureParameters(this.textureLocation,this.textureAddressingX,this.textureAddressingY,this.bilinear ? kha_graphics4_TextureFilter.LinearFilter : kha_graphics4_TextureFilter.PointFilter,this.bilinear ? kha_graphics4_TextureFilter.LinearFilter : kha_graphics4_TextureFilter.PointFilter,this.bilinearMipmaps ? kha_graphics4_MipMapFilter.LinearMipFilter : kha_graphics4_MipMapFilter.NoMipFilter);
+		this.g.setMatrix(this.imgProjMatrix,this.projectionMatrix);
+		this.g.drawIndexedVertices(0,polyPainter_PolyPainter.imgBufferIndex * 3);
+		this.g.setTexture(this.textureLocation,null);
+		polyPainter_PolyPainter.imgBufferIndex = 0;
+		this.posImage = 0;
+		polyPainter_PolyPainter.verticesImg = polyPainter_PolyPainter.vertexBufferImage.lock();
+	}
+	,flush: function() {
+		if(polyPainter_PolyPainter.imgBufferIndex > 0) {
+			this.drawBufferImage();
+		}
+		if(polyPainter_PolyPainter.gradBufferIndex > 0) {
 			this.drawBufferGradient();
 		}
 	}
@@ -23781,18 +23987,18 @@ kha_Shaders.painter_colored_vertData2 = "s354:I3ZlcnNpb24gMzAwIGVzCgp1bmlmb3JtIG
 kha_Shaders.painter_image_fragData0 = "s471:I3ZlcnNpb24gMTAwCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gaGlnaHAgaW50OwoKdW5pZm9ybSBoaWdocCBzYW1wbGVyMkQgdGV4OwoKdmFyeWluZyBoaWdocCB2ZWMyIHRleENvb3JkOwp2YXJ5aW5nIGhpZ2hwIHZlYzQgY29sb3I7Cgp2b2lkIG1haW4oKQp7CiAgICBoaWdocCB2ZWM0IHRleGNvbG9yID0gdGV4dHVyZTJEKHRleCwgdGV4Q29vcmQpICogY29sb3I7CiAgICBoaWdocCB2ZWMzIF8zMiA9IHRleGNvbG9yLnh5eiAqIGNvbG9yLnc7CiAgICB0ZXhjb2xvciA9IHZlYzQoXzMyLngsIF8zMi55LCBfMzIueiwgdGV4Y29sb3Iudyk7CiAgICBnbF9GcmFnRGF0YVswXSA9IHRleGNvbG9yOwp9Cgo";
 kha_Shaders.painter_image_fragData1 = "s444:I3ZlcnNpb24gMTAwCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gbWVkaXVtcCBpbnQ7Cgp1bmlmb3JtIG1lZGl1bXAgc2FtcGxlcjJEIHRleDsKCnZhcnlpbmcgdmVjMiB0ZXhDb29yZDsKdmFyeWluZyB2ZWM0IGNvbG9yOwoKdm9pZCBtYWluKCkKewogICAgdmVjNCB0ZXhjb2xvciA9IHRleHR1cmUyRCh0ZXgsIHRleENvb3JkKSAqIGNvbG9yOwogICAgdmVjMyBfMzIgPSB0ZXhjb2xvci54eXogKiBjb2xvci53OwogICAgdGV4Y29sb3IgPSB2ZWM0KF8zMi54LCBfMzIueSwgXzMyLnosIHRleGNvbG9yLncpOwogICAgZ2xfRnJhZ0RhdGFbMF0gPSB0ZXhjb2xvcjsKfQoK";
 kha_Shaders.painter_image_fragData2 = "s452:I3ZlcnNpb24gMzAwIGVzCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gbWVkaXVtcCBpbnQ7Cgp1bmlmb3JtIG1lZGl1bXAgc2FtcGxlcjJEIHRleDsKCmluIHZlYzIgdGV4Q29vcmQ7CmluIHZlYzQgY29sb3I7Cm91dCB2ZWM0IEZyYWdDb2xvcjsKCnZvaWQgbWFpbigpCnsKICAgIHZlYzQgdGV4Y29sb3IgPSB0ZXh0dXJlKHRleCwgdGV4Q29vcmQpICogY29sb3I7CiAgICB2ZWMzIF8zMiA9IHRleGNvbG9yLnh5eiAqIGNvbG9yLnc7CiAgICB0ZXhjb2xvciA9IHZlYzQoXzMyLngsIF8zMi55LCBfMzIueiwgdGV4Y29sb3Iudyk7CiAgICBGcmFnQ29sb3IgPSB0ZXhjb2xvcjsKfQoK";
-kha_Shaders.painter_image_vertData0 = "s415:I3ZlcnNpb24gMTAwCgp1bmlmb3JtIG1hdDQgcHJvamVjdGlvbk1hdHJpeDsKCmF0dHJpYnV0ZSB2ZWMzIHZlcnRleFBvc2l0aW9uOwp2YXJ5aW5nIHZlYzIgdGV4Q29vcmQ7CmF0dHJpYnV0ZSB2ZWMyIHRleFBvc2l0aW9uOwp2YXJ5aW5nIHZlYzQgY29sb3I7CmF0dHJpYnV0ZSB2ZWM0IHZlcnRleENvbG9yOwoKdm9pZCBtYWluKCkKewogICAgZ2xfUG9zaXRpb24gPSBwcm9qZWN0aW9uTWF0cml4ICogdmVjNCh2ZXJ0ZXhQb3NpdGlvbiwgMS4wKTsKICAgIHRleENvb3JkID0gdGV4UG9zaXRpb247CiAgICBjb2xvciA9IHZlcnRleENvbG9yOwp9Cgo";
-kha_Shaders.painter_image_vertData1 = "s479:I3ZlcnNpb24gMTAwCgp1bmlmb3JtIG1lZGl1bXAgbWF0NCBwcm9qZWN0aW9uTWF0cml4OwoKYXR0cmlidXRlIG1lZGl1bXAgdmVjMyB2ZXJ0ZXhQb3NpdGlvbjsKdmFyeWluZyBtZWRpdW1wIHZlYzIgdGV4Q29vcmQ7CmF0dHJpYnV0ZSBtZWRpdW1wIHZlYzIgdGV4UG9zaXRpb247CnZhcnlpbmcgbWVkaXVtcCB2ZWM0IGNvbG9yOwphdHRyaWJ1dGUgbWVkaXVtcCB2ZWM0IHZlcnRleENvbG9yOwoKdm9pZCBtYWluKCkKewogICAgZ2xfUG9zaXRpb24gPSBwcm9qZWN0aW9uTWF0cml4ICogdmVjNCh2ZXJ0ZXhQb3NpdGlvbiwgMS4wKTsKICAgIHRleENvb3JkID0gdGV4UG9zaXRpb247CiAgICBjb2xvciA9IHZlcnRleENvbG9yOwp9Cgo";
-kha_Shaders.painter_image_vertData2 = "s444:I3ZlcnNpb24gMzAwIGVzCgp1bmlmb3JtIG1lZGl1bXAgbWF0NCBwcm9qZWN0aW9uTWF0cml4OwoKaW4gbWVkaXVtcCB2ZWMzIHZlcnRleFBvc2l0aW9uOwpvdXQgbWVkaXVtcCB2ZWMyIHRleENvb3JkOwppbiBtZWRpdW1wIHZlYzIgdGV4UG9zaXRpb247Cm91dCBtZWRpdW1wIHZlYzQgY29sb3I7CmluIG1lZGl1bXAgdmVjNCB2ZXJ0ZXhDb2xvcjsKCnZvaWQgbWFpbigpCnsKICAgIGdsX1Bvc2l0aW9uID0gcHJvamVjdGlvbk1hdHJpeCAqIHZlYzQodmVydGV4UG9zaXRpb24sIDEuMCk7CiAgICB0ZXhDb29yZCA9IHRleFBvc2l0aW9uOwogICAgY29sb3IgPSB2ZXJ0ZXhDb2xvcjsKfQoK";
 kha_Shaders.painter_text_fragData0 = "s351:I3ZlcnNpb24gMTAwCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gaGlnaHAgaW50OwoKdW5pZm9ybSBoaWdocCBzYW1wbGVyMkQgdGV4OwoKdmFyeWluZyBoaWdocCB2ZWM0IGZyYWdtZW50Q29sb3I7CnZhcnlpbmcgaGlnaHAgdmVjMiB0ZXhDb29yZDsKCnZvaWQgbWFpbigpCnsKICAgIGdsX0ZyYWdEYXRhWzBdID0gdmVjNChmcmFnbWVudENvbG9yLnh5eiwgdGV4dHVyZTJEKHRleCwgdGV4Q29vcmQpLnggKiBmcmFnbWVudENvbG9yLncpOwp9Cgo";
 kha_Shaders.painter_text_fragData1 = "s340:I3ZlcnNpb24gMTAwCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gbWVkaXVtcCBpbnQ7Cgp1bmlmb3JtIG1lZGl1bXAgc2FtcGxlcjJEIHRleDsKCnZhcnlpbmcgdmVjNCBmcmFnbWVudENvbG9yOwp2YXJ5aW5nIHZlYzIgdGV4Q29vcmQ7Cgp2b2lkIG1haW4oKQp7CiAgICBnbF9GcmFnRGF0YVswXSA9IHZlYzQoZnJhZ21lbnRDb2xvci54eXosIHRleHR1cmUyRCh0ZXgsIHRleENvb3JkKS54ICogZnJhZ21lbnRDb2xvci53KTsKfQoK";
 kha_Shaders.painter_text_fragData2 = "s348:I3ZlcnNpb24gMzAwIGVzCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gbWVkaXVtcCBpbnQ7Cgp1bmlmb3JtIG1lZGl1bXAgc2FtcGxlcjJEIHRleDsKCm91dCB2ZWM0IEZyYWdDb2xvcjsKaW4gdmVjNCBmcmFnbWVudENvbG9yOwppbiB2ZWMyIHRleENvb3JkOwoKdm9pZCBtYWluKCkKewogICAgRnJhZ0NvbG9yID0gdmVjNChmcmFnbWVudENvbG9yLnh5eiwgdGV4dHVyZSh0ZXgsIHRleENvb3JkKS54ICogZnJhZ21lbnRDb2xvci53KTsKfQoK";
-kha_Shaders.painter_video_fragData0 = "s471:I3ZlcnNpb24gMTAwCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gaGlnaHAgaW50OwoKdW5pZm9ybSBoaWdocCBzYW1wbGVyMkQgdGV4OwoKdmFyeWluZyBoaWdocCB2ZWMyIHRleENvb3JkOwp2YXJ5aW5nIGhpZ2hwIHZlYzQgY29sb3I7Cgp2b2lkIG1haW4oKQp7CiAgICBoaWdocCB2ZWM0IHRleGNvbG9yID0gdGV4dHVyZTJEKHRleCwgdGV4Q29vcmQpICogY29sb3I7CiAgICBoaWdocCB2ZWMzIF8zMiA9IHRleGNvbG9yLnh5eiAqIGNvbG9yLnc7CiAgICB0ZXhjb2xvciA9IHZlYzQoXzMyLngsIF8zMi55LCBfMzIueiwgdGV4Y29sb3Iudyk7CiAgICBnbF9GcmFnRGF0YVswXSA9IHRleGNvbG9yOwp9Cgo";
-kha_Shaders.painter_video_fragData1 = "s444:I3ZlcnNpb24gMTAwCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gbWVkaXVtcCBpbnQ7Cgp1bmlmb3JtIG1lZGl1bXAgc2FtcGxlcjJEIHRleDsKCnZhcnlpbmcgdmVjMiB0ZXhDb29yZDsKdmFyeWluZyB2ZWM0IGNvbG9yOwoKdm9pZCBtYWluKCkKewogICAgdmVjNCB0ZXhjb2xvciA9IHRleHR1cmUyRCh0ZXgsIHRleENvb3JkKSAqIGNvbG9yOwogICAgdmVjMyBfMzIgPSB0ZXhjb2xvci54eXogKiBjb2xvci53OwogICAgdGV4Y29sb3IgPSB2ZWM0KF8zMi54LCBfMzIueSwgXzMyLnosIHRleGNvbG9yLncpOwogICAgZ2xfRnJhZ0RhdGFbMF0gPSB0ZXhjb2xvcjsKfQoK";
-kha_Shaders.painter_video_fragData2 = "s452:I3ZlcnNpb24gMzAwIGVzCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gbWVkaXVtcCBpbnQ7Cgp1bmlmb3JtIG1lZGl1bXAgc2FtcGxlcjJEIHRleDsKCmluIHZlYzIgdGV4Q29vcmQ7CmluIHZlYzQgY29sb3I7Cm91dCB2ZWM0IEZyYWdDb2xvcjsKCnZvaWQgbWFpbigpCnsKICAgIHZlYzQgdGV4Y29sb3IgPSB0ZXh0dXJlKHRleCwgdGV4Q29vcmQpICogY29sb3I7CiAgICB2ZWMzIF8zMiA9IHRleGNvbG9yLnh5eiAqIGNvbG9yLnc7CiAgICB0ZXhjb2xvciA9IHZlYzQoXzMyLngsIF8zMi55LCBfMzIueiwgdGV4Y29sb3Iudyk7CiAgICBGcmFnQ29sb3IgPSB0ZXhjb2xvcjsKfQoK";
 kha_Shaders.painter_text_vertData0 = "s436:I3ZlcnNpb24gMTAwCgp1bmlmb3JtIG1hdDQgcHJvamVjdGlvbk1hdHJpeDsKCmF0dHJpYnV0ZSB2ZWMzIHZlcnRleFBvc2l0aW9uOwp2YXJ5aW5nIHZlYzIgdGV4Q29vcmQ7CmF0dHJpYnV0ZSB2ZWMyIHRleFBvc2l0aW9uOwp2YXJ5aW5nIHZlYzQgZnJhZ21lbnRDb2xvcjsKYXR0cmlidXRlIHZlYzQgdmVydGV4Q29sb3I7Cgp2b2lkIG1haW4oKQp7CiAgICBnbF9Qb3NpdGlvbiA9IHByb2plY3Rpb25NYXRyaXggKiB2ZWM0KHZlcnRleFBvc2l0aW9uLCAxLjApOwogICAgdGV4Q29vcmQgPSB0ZXhQb3NpdGlvbjsKICAgIGZyYWdtZW50Q29sb3IgPSB2ZXJ0ZXhDb2xvcjsKfQoK";
 kha_Shaders.painter_text_vertData1 = "s500:I3ZlcnNpb24gMTAwCgp1bmlmb3JtIG1lZGl1bXAgbWF0NCBwcm9qZWN0aW9uTWF0cml4OwoKYXR0cmlidXRlIG1lZGl1bXAgdmVjMyB2ZXJ0ZXhQb3NpdGlvbjsKdmFyeWluZyBtZWRpdW1wIHZlYzIgdGV4Q29vcmQ7CmF0dHJpYnV0ZSBtZWRpdW1wIHZlYzIgdGV4UG9zaXRpb247CnZhcnlpbmcgbWVkaXVtcCB2ZWM0IGZyYWdtZW50Q29sb3I7CmF0dHJpYnV0ZSBtZWRpdW1wIHZlYzQgdmVydGV4Q29sb3I7Cgp2b2lkIG1haW4oKQp7CiAgICBnbF9Qb3NpdGlvbiA9IHByb2plY3Rpb25NYXRyaXggKiB2ZWM0KHZlcnRleFBvc2l0aW9uLCAxLjApOwogICAgdGV4Q29vcmQgPSB0ZXhQb3NpdGlvbjsKICAgIGZyYWdtZW50Q29sb3IgPSB2ZXJ0ZXhDb2xvcjsKfQoK";
 kha_Shaders.painter_text_vertData2 = "s466:I3ZlcnNpb24gMzAwIGVzCgp1bmlmb3JtIG1lZGl1bXAgbWF0NCBwcm9qZWN0aW9uTWF0cml4OwoKaW4gbWVkaXVtcCB2ZWMzIHZlcnRleFBvc2l0aW9uOwpvdXQgbWVkaXVtcCB2ZWMyIHRleENvb3JkOwppbiBtZWRpdW1wIHZlYzIgdGV4UG9zaXRpb247Cm91dCBtZWRpdW1wIHZlYzQgZnJhZ21lbnRDb2xvcjsKaW4gbWVkaXVtcCB2ZWM0IHZlcnRleENvbG9yOwoKdm9pZCBtYWluKCkKewogICAgZ2xfUG9zaXRpb24gPSBwcm9qZWN0aW9uTWF0cml4ICogdmVjNCh2ZXJ0ZXhQb3NpdGlvbiwgMS4wKTsKICAgIHRleENvb3JkID0gdGV4UG9zaXRpb247CiAgICBmcmFnbWVudENvbG9yID0gdmVydGV4Q29sb3I7Cn0KCg";
+kha_Shaders.painter_image_vertData0 = "s415:I3ZlcnNpb24gMTAwCgp1bmlmb3JtIG1hdDQgcHJvamVjdGlvbk1hdHJpeDsKCmF0dHJpYnV0ZSB2ZWMzIHZlcnRleFBvc2l0aW9uOwp2YXJ5aW5nIHZlYzIgdGV4Q29vcmQ7CmF0dHJpYnV0ZSB2ZWMyIHRleFBvc2l0aW9uOwp2YXJ5aW5nIHZlYzQgY29sb3I7CmF0dHJpYnV0ZSB2ZWM0IHZlcnRleENvbG9yOwoKdm9pZCBtYWluKCkKewogICAgZ2xfUG9zaXRpb24gPSBwcm9qZWN0aW9uTWF0cml4ICogdmVjNCh2ZXJ0ZXhQb3NpdGlvbiwgMS4wKTsKICAgIHRleENvb3JkID0gdGV4UG9zaXRpb247CiAgICBjb2xvciA9IHZlcnRleENvbG9yOwp9Cgo";
+kha_Shaders.painter_image_vertData1 = "s479:I3ZlcnNpb24gMTAwCgp1bmlmb3JtIG1lZGl1bXAgbWF0NCBwcm9qZWN0aW9uTWF0cml4OwoKYXR0cmlidXRlIG1lZGl1bXAgdmVjMyB2ZXJ0ZXhQb3NpdGlvbjsKdmFyeWluZyBtZWRpdW1wIHZlYzIgdGV4Q29vcmQ7CmF0dHJpYnV0ZSBtZWRpdW1wIHZlYzIgdGV4UG9zaXRpb247CnZhcnlpbmcgbWVkaXVtcCB2ZWM0IGNvbG9yOwphdHRyaWJ1dGUgbWVkaXVtcCB2ZWM0IHZlcnRleENvbG9yOwoKdm9pZCBtYWluKCkKewogICAgZ2xfUG9zaXRpb24gPSBwcm9qZWN0aW9uTWF0cml4ICogdmVjNCh2ZXJ0ZXhQb3NpdGlvbiwgMS4wKTsKICAgIHRleENvb3JkID0gdGV4UG9zaXRpb247CiAgICBjb2xvciA9IHZlcnRleENvbG9yOwp9Cgo";
+kha_Shaders.painter_image_vertData2 = "s444:I3ZlcnNpb24gMzAwIGVzCgp1bmlmb3JtIG1lZGl1bXAgbWF0NCBwcm9qZWN0aW9uTWF0cml4OwoKaW4gbWVkaXVtcCB2ZWMzIHZlcnRleFBvc2l0aW9uOwpvdXQgbWVkaXVtcCB2ZWMyIHRleENvb3JkOwppbiBtZWRpdW1wIHZlYzIgdGV4UG9zaXRpb247Cm91dCBtZWRpdW1wIHZlYzQgY29sb3I7CmluIG1lZGl1bXAgdmVjNCB2ZXJ0ZXhDb2xvcjsKCnZvaWQgbWFpbigpCnsKICAgIGdsX1Bvc2l0aW9uID0gcHJvamVjdGlvbk1hdHJpeCAqIHZlYzQodmVydGV4UG9zaXRpb24sIDEuMCk7CiAgICB0ZXhDb29yZCA9IHRleFBvc2l0aW9uOwogICAgY29sb3IgPSB2ZXJ0ZXhDb2xvcjsKfQoK";
+kha_Shaders.painter_video_fragData0 = "s471:I3ZlcnNpb24gMTAwCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gaGlnaHAgaW50OwoKdW5pZm9ybSBoaWdocCBzYW1wbGVyMkQgdGV4OwoKdmFyeWluZyBoaWdocCB2ZWMyIHRleENvb3JkOwp2YXJ5aW5nIGhpZ2hwIHZlYzQgY29sb3I7Cgp2b2lkIG1haW4oKQp7CiAgICBoaWdocCB2ZWM0IHRleGNvbG9yID0gdGV4dHVyZTJEKHRleCwgdGV4Q29vcmQpICogY29sb3I7CiAgICBoaWdocCB2ZWMzIF8zMiA9IHRleGNvbG9yLnh5eiAqIGNvbG9yLnc7CiAgICB0ZXhjb2xvciA9IHZlYzQoXzMyLngsIF8zMi55LCBfMzIueiwgdGV4Y29sb3Iudyk7CiAgICBnbF9GcmFnRGF0YVswXSA9IHRleGNvbG9yOwp9Cgo";
+kha_Shaders.painter_video_fragData1 = "s444:I3ZlcnNpb24gMTAwCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gbWVkaXVtcCBpbnQ7Cgp1bmlmb3JtIG1lZGl1bXAgc2FtcGxlcjJEIHRleDsKCnZhcnlpbmcgdmVjMiB0ZXhDb29yZDsKdmFyeWluZyB2ZWM0IGNvbG9yOwoKdm9pZCBtYWluKCkKewogICAgdmVjNCB0ZXhjb2xvciA9IHRleHR1cmUyRCh0ZXgsIHRleENvb3JkKSAqIGNvbG9yOwogICAgdmVjMyBfMzIgPSB0ZXhjb2xvci54eXogKiBjb2xvci53OwogICAgdGV4Y29sb3IgPSB2ZWM0KF8zMi54LCBfMzIueSwgXzMyLnosIHRleGNvbG9yLncpOwogICAgZ2xfRnJhZ0RhdGFbMF0gPSB0ZXhjb2xvcjsKfQoK";
+kha_Shaders.painter_video_fragData2 = "s452:I3ZlcnNpb24gMzAwIGVzCnByZWNpc2lvbiBtZWRpdW1wIGZsb2F0OwpwcmVjaXNpb24gbWVkaXVtcCBpbnQ7Cgp1bmlmb3JtIG1lZGl1bXAgc2FtcGxlcjJEIHRleDsKCmluIHZlYzIgdGV4Q29vcmQ7CmluIHZlYzQgY29sb3I7Cm91dCB2ZWM0IEZyYWdDb2xvcjsKCnZvaWQgbWFpbigpCnsKICAgIHZlYzQgdGV4Y29sb3IgPSB0ZXh0dXJlKHRleCwgdGV4Q29vcmQpICogY29sb3I7CiAgICB2ZWMzIF8zMiA9IHRleGNvbG9yLnh5eiAqIGNvbG9yLnc7CiAgICB0ZXhjb2xvciA9IHZlYzQoXzMyLngsIF8zMi55LCBfMzIueiwgdGV4Y29sb3Iudyk7CiAgICBGcmFnQ29sb3IgPSB0ZXhjb2xvcjsKfQoK";
 kha_Shaders.painter_video_vertData0 = "s415:I3ZlcnNpb24gMTAwCgp1bmlmb3JtIG1hdDQgcHJvamVjdGlvbk1hdHJpeDsKCmF0dHJpYnV0ZSB2ZWMzIHZlcnRleFBvc2l0aW9uOwp2YXJ5aW5nIHZlYzIgdGV4Q29vcmQ7CmF0dHJpYnV0ZSB2ZWMyIHRleFBvc2l0aW9uOwp2YXJ5aW5nIHZlYzQgY29sb3I7CmF0dHJpYnV0ZSB2ZWM0IHZlcnRleENvbG9yOwoKdm9pZCBtYWluKCkKewogICAgZ2xfUG9zaXRpb24gPSBwcm9qZWN0aW9uTWF0cml4ICogdmVjNCh2ZXJ0ZXhQb3NpdGlvbiwgMS4wKTsKICAgIHRleENvb3JkID0gdGV4UG9zaXRpb247CiAgICBjb2xvciA9IHZlcnRleENvbG9yOwp9Cgo";
 kha_Shaders.painter_video_vertData1 = "s479:I3ZlcnNpb24gMTAwCgp1bmlmb3JtIG1lZGl1bXAgbWF0NCBwcm9qZWN0aW9uTWF0cml4OwoKYXR0cmlidXRlIG1lZGl1bXAgdmVjMyB2ZXJ0ZXhQb3NpdGlvbjsKdmFyeWluZyBtZWRpdW1wIHZlYzIgdGV4Q29vcmQ7CmF0dHJpYnV0ZSBtZWRpdW1wIHZlYzIgdGV4UG9zaXRpb247CnZhcnlpbmcgbWVkaXVtcCB2ZWM0IGNvbG9yOwphdHRyaWJ1dGUgbWVkaXVtcCB2ZWM0IHZlcnRleENvbG9yOwoKdm9pZCBtYWluKCkKewogICAgZ2xfUG9zaXRpb24gPSBwcm9qZWN0aW9uTWF0cml4ICogdmVjNCh2ZXJ0ZXhQb3NpdGlvbiwgMS4wKTsKICAgIHRleENvb3JkID0gdGV4UG9zaXRpb247CiAgICBjb2xvciA9IHZlcnRleENvbG9yOwp9Cgo";
 kha_Shaders.painter_video_vertData2 = "s444:I3ZlcnNpb24gMzAwIGVzCgp1bmlmb3JtIG1lZGl1bXAgbWF0NCBwcm9qZWN0aW9uTWF0cml4OwoKaW4gbWVkaXVtcCB2ZWMzIHZlcnRleFBvc2l0aW9uOwpvdXQgbWVkaXVtcCB2ZWMyIHRleENvb3JkOwppbiBtZWRpdW1wIHZlYzIgdGV4UG9zaXRpb247Cm91dCBtZWRpdW1wIHZlYzQgY29sb3I7CmluIG1lZGl1bXAgdmVjNCB2ZXJ0ZXhDb2xvcjsKCnZvaWQgbWFpbigpCnsKICAgIGdsX1Bvc2l0aW9uID0gcHJvamVjdGlvbk1hdHJpeCAqIHZlYzQodmVydGV4UG9zaXRpb24sIDEuMCk7CiAgICB0ZXhDb29yZCA9IHRleFBvc2l0aW9uOwogICAgY29sb3IgPSB2ZXJ0ZXhDb2xvcjsKfQoK";

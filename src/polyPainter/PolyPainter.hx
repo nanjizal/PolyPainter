@@ -8,7 +8,7 @@ import kha.Font;
 import kha.graphics2.ImageScaleQuality;
 import kha.Image;
 import kha.graphics4.PipelineState;
-import kha.graphics4.Graphics2;
+//import kha.graphics4.Graphics2;
 import kha.graphics4.Graphics;
 import kha.graphics4.BlendingOperation;
 import kha.graphics4.BlendingFactor;
@@ -38,61 +38,73 @@ abstract ShaderMode( Int ){
     var ImageMode = 1;
 }
 class PolyPainter{
-
-    var projectionMatrix: FastMatrix4;
-    static var shaderPipelineImage: PipelineState = null;
-    static var shaderPipelineGradient: PipelineState = null;
-    static var structureImage: VertexStructure = null;
-    static var structureGradient: VertexStructure = null;
-    static inline var bufferSize: Int = 1500;
-    static inline var vertexSizeImage: Int = 9;
-    static inline var vertexSizeGradient: Int = 7;
-    static var bufferIndexImage: Int;
-    static var bufferIndexGradient: Int;
-    static var vertexBufferImage: VertexBuffer;
-    static var vertexBufferGradient: VertexBuffer;
-    static var verticesImage: Float32Array;
-    static var verticesGradient: Float32Array;
-    static var indexBufferImage: IndexBuffer;
-    static var indexBufferGradient: IndexBuffer;
-    static var lastTexture: Image;
-    static var vertexPosImage :Int = 0;
-    static var vertexPosGradient: Int = 0;
-    public var textureAddressingX: TextureAddressing = Clamp;
-    public var textureAddressingY: TextureAddressing = Clamp;
-    var shaderMode = ImageMode;
-    var bilinear: Bool = false;
-    var bilinearMipmaps: Bool = false;    
-    var g: Graphics;
-    var myPipeline: PipelineState = null;
-    var projectionLocationImage: ConstantLocation;
-    var textureLocation: TextureUnit;
-    var projectionLocationGradient: ConstantLocation;
-    var isFramebuffer: Bool;
-    var width: Int;
-    var height: Int;
-    var writePosImage:Int = 0;
-    var writePosGradient: Int = 0;
-    public var pipeline(get, set): PipelineState;
-
-    public var sourceBlend: BlendingFactor = BlendingFactor.Undefined;
-    public var destinationBlend: BlendingFactor = BlendingFactor.Undefined;
-
+    static inline var bufferSize:       Int             = 1500;
+    static inline var vertexSizeImage:  Int             = 9;
+    static inline var vertexSizeGradient: Int           = 7;
+    var projectionMatrix:               FastMatrix4;
+    static var imagePipe:               PipelineState   = null;
+    static var gradientPipe:            PipelineState   = null;
+    static var strucImg:                VertexStructure = null;
+    static var strucGrad:               VertexStructure = null;
+    static var imgBufferIndex:          Int;
+    static var gradBufferIndex:         Int;
+    static var vertexBufferImage:       VertexBuffer;
+    static var vertexBufferGradient:    VertexBuffer;
+    static var verticesImg:             Float32Array;
+    static var verticesGrad:            Float32Array;
+    static var indexBufferImg:          IndexBuffer;
+    static var indexBufferGrad:         IndexBuffer;
+    static var imgLast:                 Image;
+    static var vertexPosImage:          Int = 0;
+    static var vertexPosGradient:       Int = 0;
+    
+    public var textureAddressingX:      TextureAddressing = Clamp;
+    public var textureAddressingY:      TextureAddressing = Clamp;
+    var shaderMode                      = ImageMode;
+    var bilinear:                       Bool = false;
+    var bilinearMipmaps:                Bool = false;    
+    var g:                              Graphics;
+    var myPipeline:                     PipelineState = null;
+    var imgProjMatrix:                  ConstantLocation;
+    var textureLocation:                TextureUnit;
+    var gradProjMatrix:                 ConstantLocation;
+    var isFramebuffer:                  Bool;
+    var width:                          Int;
+    var height:                         Int;
+    var posImage:                       Int = 0;
+    var posGradient:                    Int = 0;
+    public var pipeline( get, set ):    PipelineState;
+    public var sourceBlend:             BlendingFactor = BlendingFactor.Undefined;
+    public var destinationBlend:        BlendingFactor = BlendingFactor.Undefined;
     public function new(){
-        bufferIndexGradient = 0;
-        bufferIndexImage = 0;
+        gradBufferIndex = 0;
+        imgBufferIndex  = 0;
         initShaders();
         initBuffers();
-        projectionLocationImage = shaderPipelineImage.getConstantLocation("projectionMatrix");
-        projectionLocationGradient = shaderPipelineGradient.getConstantLocation("projectionMatrix");
-        textureLocation = shaderPipelineImage.getTextureUnit("tex");
+        imgProjMatrix   = imagePipe.getConstantLocation( "projectionMatrix" );
+        gradProjMatrix  = gradientPipe.getConstantLocation( "projectionMatrix" );
+        textureLocation = imagePipe.getTextureUnit( "tex" );
     }
-
+    public function begin(clear: Bool = true, clearColor: Color = null): Void {
+        if( g == null ) return;
+        g.begin();
+        if ( clear ) g.clear( clearColor );
+        getProjectionMatrix();
+    }
+    public function clear( color: Color = null ): Void {
+        if( g == null ) return;
+        drawBuffer();
+        g.clear( color == null ? Color.Black : color );
+    }
+    public function end(){
+        if( g == null ) return;
+        flush();
+        g.end();
+    }
     public function setProjection( projectionMatrix: FastMatrix4 ): Void {
         this.projectionMatrix = projectionMatrix;
     }
-    
-    private static function upperPowerOfTwo( v: Int ): Int {
+    static function upperPowerOfTwo( v: Int ): Int {
         v--;
         v |= v >>> 1;
         v |= v >>> 2;
@@ -102,258 +114,188 @@ class PolyPainter{
         v++;
         return v;
     }
-
-    private static function initShaders(): Void {
-        initImageShader();
-        initGradientShader();
+    static function initShaders():Void {
+        if( strucImg == null ) {
+            strucImg                        = new VertexStructure();
+            strucImg.add( "vertexPosition",  VertexData.Float3 );
+            strucImg.add( "texPosition",     VertexData.Float2 );
+            strucImg.add( "vertexColor",     VertexData.Float4 );
+        }
+        if( imagePipe == null ){
+            imagePipe                        = new PipelineState();
+            imagePipe.fragmentShader         = Shaders.painter_image_frag;
+            imagePipe.vertexShader           = Shaders.painter_image_vert;
+            imagePipe.inputLayout            = [ strucImg ];
+            imagePipe.blendSource            = BlendingFactor.BlendOne;
+            imagePipe.alphaBlendSource       = BlendingFactor.BlendOne;
+            imagePipe.blendDestination       = BlendingFactor.InverseSourceAlpha;
+            imagePipe.alphaBlendDestination  = BlendingFactor.InverseSourceAlpha;
+            imagePipe.compile();
+        }
+        if( strucGrad == null ) {
+            strucGrad                         = new VertexStructure();
+            strucGrad.add( "vertexPosition",  VertexData.Float3 );
+            strucGrad.add( "vertexColor",     VertexData.Float4 );
+        }
+        if( gradientPipe == null ) {
+            gradientPipe                       = new PipelineState();
+            gradientPipe.fragmentShader        = Shaders.painter_colored_frag;
+            gradientPipe.vertexShader          = Shaders.painter_colored_vert;
+            gradientPipe.inputLayout           = [ strucGrad ];
+            gradientPipe.blendSource           = BlendingFactor.SourceAlpha;
+            gradientPipe.alphaBlendSource      = BlendingFactor.SourceAlpha;
+            gradientPipe.blendDestination      = BlendingFactor.InverseSourceAlpha;
+            gradientPipe.alphaBlendDestination = BlendingFactor.InverseSourceAlpha;
+            gradientPipe.compile();
+        }
     }
-    private static function initImageShader():Void {
-        if( structureImage == null ){
-            structureImage = Graphics2.createImageVertexStructure();
-        }
-        if( shaderPipelineImage == null ){
-            shaderPipelineImage = Graphics2.createImagePipeline( structureImage );
-            shaderPipelineImage.compile();
-        }
-    }
-    private static function initGradientShader():Void {
-        if( structureGradient == null ){
-            structureGradient = Graphics2.createColoredVertexStructure();
-        }
-        if( shaderPipelineGradient == null ) {
-            shaderPipelineGradient = Graphics2.createColoredPipeline( structureGradient );
-            shaderPipelineGradient.compile();
-        }
-    }
-
-    private function get_pipeline(): PipelineState {
+    function get_pipeline(): PipelineState {
         return myPipeline;
     }
-    
-    private function set_pipeline( pipe: PipelineState ): PipelineState {
+    function set_pipeline( pipe: PipelineState ): PipelineState {
         if(pipe != myPipeline)
         flush();
-
+        
         if( pipe == null ) {
-            projectionLocationImage = shaderPipelineImage.getConstantLocation( "projectionMatrix" );
-            textureLocation = shaderPipelineImage.getTextureUnit( "tex" );
-        } else if( pipe == shaderPipelineGradient ){
-            projectionLocationImage = pipe.getConstantLocation( "projectionMatrix" );
+            imgProjMatrix   = imagePipe.getConstantLocation( "projectionMatrix" );
+            textureLocation = imagePipe.getTextureUnit( "tex" );
+        } else if( pipe == gradientPipe ){
+            imgProjMatrix   = pipe.getConstantLocation( "projectionMatrix" );
         } else {
-            projectionLocationImage = pipe.getConstantLocation( "projectionMatrix" );
+            imgProjMatrix   = pipe.getConstantLocation( "projectionMatrix" );
             textureLocation = pipe.getTextureUnit( "tex" );
         }
         return myPipeline = pipe;
     }
-
-    private function initBuffers(): Void {
-        initBuffersImage();
-        initBuffersGradient();
-    }
-    private function initBuffersImage():Void {
-        if (vertexBufferImage == null) {
-            vertexBufferImage = new VertexBuffer( bufferSize, structureImage, Usage.DynamicUsage );
-            verticesImage = vertexBufferImage.lock();
-            
-            indexBufferImage = new IndexBuffer( bufferSize*3, Usage.StaticUsage );
-            var indicesImage = indexBufferImage.lock();
+    function initBuffers(): Void {
+        if( vertexBufferImage == null ) {
+            vertexBufferImage = new VertexBuffer( bufferSize, strucImg, Usage.DynamicUsage );
+            verticesImg     = vertexBufferImage.lock();
+            indexBufferImg  = new IndexBuffer( bufferSize*3, Usage.StaticUsage );
+            var indicesImage  = indexBufferImg.lock();
             for( i in 0...bufferSize*3 ) {
-                indicesImage[ i * 3 + 0 ] = i *3 + 0;
+                indicesImage[ i * 3 ]     = i *3;
                 indicesImage[ i * 3 + 1 ] = i *3 + 1;
                 indicesImage[ i * 3 + 2 ] = i *3 + 2;
             }
-            indexBufferImage.unlock();
+            indexBufferImg.unlock();
         }
-    }
-    private function initBuffersGradient(): Void {
-        if (vertexBufferGradient == null) {
-            vertexBufferGradient = new VertexBuffer( bufferSize, structureGradient, Usage.DynamicUsage );
-            verticesGradient = vertexBufferGradient.lock();
-            
-            indexBufferGradient = new IndexBuffer( bufferSize*3, Usage.StaticUsage );
-            var indicesGradient = indexBufferGradient.lock();
-            for( i in 0...bufferSize*3 ) {
-                indicesGradient[ i * 3 + 0 ] = i *3 + 0;
+        if( vertexBufferGradient == null ){
+            vertexBufferGradient = new VertexBuffer( bufferSize, strucGrad, Usage.DynamicUsage );
+            verticesGrad     = vertexBufferGradient.lock();
+            indexBufferGrad  = new IndexBuffer( bufferSize*3, Usage.StaticUsage );
+            var indicesGradient  = indexBufferGrad.lock();
+            for( i in 0...bufferSize*3 ){
+                indicesGradient[ i * 3 ]     = i *3;
                 indicesGradient[ i * 3 + 1 ] = i *3 + 1;
                 indicesGradient[ i * 3 + 2 ] = i *3 + 2;
             }
-            indexBufferGradient.unlock();
+            indexBufferGrad.unlock();
         }
     }
-
     public function drawFillTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,     color: Color ){
-        if( shaderMode == ImageMode ) flush();
-        var writePos = writePosGradient;
-        verticesGradient.set( writePos +  0, ax );
-        verticesGradient.set( writePos +  1, ay );
-        verticesGradient.set( writePos +  2, -5.0 );
-        verticesGradient.set( writePos +  3, color.R );
-        verticesGradient.set( writePos +  4, color.G );
-        verticesGradient.set( writePos +  5, color.B );
-        verticesGradient.set( writePos +  6, color.A );
-        writePos +=7;
-        verticesGradient.set( writePos +  0, bx );
-        verticesGradient.set( writePos +  1, by );
-        verticesGradient.set( writePos +  2, -5.0 );
-        verticesGradient.set( writePos +  3, color.R );
-        verticesGradient.set( writePos +  4, color.G );
-        verticesGradient.set( writePos +  5, color.B );
-        verticesGradient.set( writePos +  6, color.A );
-        writePos +=7;
-        verticesGradient.set( writePos +  0, cx );
-        verticesGradient.set( writePos +  1, cy );
-        verticesGradient.set( writePos +  2, -5.0 );
-        verticesGradient.set( writePos +  3, color.R );
-        verticesGradient.set( writePos +  4, color.G );
-        verticesGradient.set( writePos +  5, color.B );
-        verticesGradient.set( writePos +  6, color.A );
-        writePos +=7;
-        writePosGradient = writePos;
-        bufferIndexGradient++;
+        drawGradientTriangle( ax, ay, bx, by, cx, cy, color, color, color );
     }
-
-    public function drawGradientTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
+    public inline function drawGradientTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,     color0: Color, color1: Color, color2: Color ){
         if( shaderMode == ImageMode ) flush();
-        var writePos = writePosGradient;
-        verticesGradient.set( writePos +  0, ax );
-        verticesGradient.set( writePos +  1, ay );
-        verticesGradient.set( writePos +  2, -5.0 );
-        verticesGradient.set( writePos +  3, color0.R );
-        verticesGradient.set( writePos +  4, color0.G );
-        verticesGradient.set( writePos +  5, color0.B );
-        verticesGradient.set( writePos +  6, color0.A );
-        writePos +=7;
-        verticesGradient.set( writePos +  0, bx );
-        verticesGradient.set( writePos +  1, by );
-        verticesGradient.set( writePos +  2, -5.0 );
-        verticesGradient.set( writePos +  3, color1.R );
-        verticesGradient.set( writePos +  4, color1.G );
-        verticesGradient.set( writePos +  5, color1.B );
-        verticesGradient.set( writePos +  6, color1.A );
-        writePos +=7;
-        verticesGradient.set( writePos +  0, cx );
-        verticesGradient.set( writePos +  1, cy );
-        verticesGradient.set( writePos +  2, -5.0 );
-        verticesGradient.set( writePos +  3, color2.R );
-        verticesGradient.set( writePos +  4, color2.G );
-        verticesGradient.set( writePos +  5, color2.B );
-        verticesGradient.set( writePos +  6, color2.A );
-        writePos +=7;
-        writePosGradient = writePos;
-        bufferIndexGradient++;
+        var pos = posGradient;
+        verticesGrad.set( pos, ax );
+        verticesGrad.set( pos +  1, ay );
+        verticesGrad.set( pos +  2, -5.0 );
+        verticesGrad.set( pos +  3, color0.R );
+        verticesGrad.set( pos +  4, color0.G );
+        verticesGrad.set( pos +  5, color0.B );
+        verticesGrad.set( pos +  6, color0.A );
+        verticesGrad.set( pos +  7, bx );
+        verticesGrad.set( pos +  8, by );
+        verticesGrad.set( pos +  9, -5.0 );
+        verticesGrad.set( pos +  10, color1.R );
+        verticesGrad.set( pos +  11, color1.G );
+        verticesGrad.set( pos +  12, color1.B );
+        verticesGrad.set( pos +  13, color1.A );
+        verticesGrad.set( pos +  14, cx );
+        verticesGrad.set( pos +  15, cy );
+        verticesGrad.set( pos +  16, -5.0 );
+        verticesGrad.set( pos +  17, color2.R );
+        verticesGrad.set( pos +  18, color2.G );
+        verticesGrad.set( pos +  19, color2.B );
+        verticesGrad.set( pos +  20, color2.A );
+        posGradient = pos + 21;
+        gradBufferIndex++;
     }
-    
     public function drawImageTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,  au: Float, av: Float, bu: Float, bv: Float, cu: Float, cv: Float
                                     , img: Image, ?alpha: Float = 1.){
         var color = Color.White;
         if( alpha != 1. ) color.A = alpha;
-        if( lastTexture != img || shaderMode == GradientMode ) flush();
-        lastTexture = img; 
-        var writePos = writePosImage;
-        verticesImage.set( writePos +  0, ax );
-        verticesImage.set( writePos +  1, ay );
-        verticesImage.set( writePos +  2, -5.0 );
-        verticesImage.set( writePos +  3, au );
-        verticesImage.set( writePos +  4, av );
-        verticesImage.set( writePos +  5, color.R );
-        verticesImage.set( writePos +  6, color.G );
-        verticesImage.set( writePos +  7, color.B );
-        verticesImage.set( writePos +  8, color.A );
-        writePos+=9;
-        verticesImage.set( writePos +  0, bx );
-        verticesImage.set( writePos +  1, by );
-        verticesImage.set( writePos +  2, -5.0 );
-        verticesImage.set( writePos +  3, bu );
-        verticesImage.set( writePos +  4, bv );
-        verticesImage.set( writePos +  5, color.R );
-        verticesImage.set( writePos +  6, color.G );
-        verticesImage.set( writePos +  7, color.B );
-        verticesImage.set( writePos +  8, color.A );
-        writePos+=9;
-        verticesImage.set( writePos +  0, cx );
-        verticesImage.set( writePos +  1, cy );
-        verticesImage.set( writePos +  2, -5.0 );
-        verticesImage.set( writePos +  3, cu );
-        verticesImage.set( writePos +  4, cv );
-        verticesImage.set( writePos +  5, color.R );
-        verticesImage.set( writePos +  6, color.G );
-        verticesImage.set( writePos +  7, color.B );
-        verticesImage.set( writePos +  8, color.A );
-        writePos+=9;
-        writePosImage = writePos;
-        bufferIndexImage++;
+        drawImageTriangleGradient( ax, ay, bx, by, cx, cy, au, av, bu, bv, cu, cv, img, color, color, color );
     }
     // this is mainly for if you want to alpha out part of an image
     // still uses image shader.
-    public function drawImageTriangleGradient( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
+    public inline function drawImageTriangleGradient( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,  au: Float, av: Float, bu: Float, bv: Float, cu: Float, cv: Float
                                     , img: Image, colorA: Color, colorB: Color, colorC: Color ){
-        if( lastTexture != img || shaderMode == GradientMode ) flush();
-        lastTexture = img; 
-        var writePos = writePosImage;
-        verticesImage.set( writePos +  0, ax );
-        verticesImage.set( writePos +  1, ay );
-        verticesImage.set( writePos +  2, -5.0 );
-        verticesImage.set( writePos +  3, au );
-        verticesImage.set( writePos +  4, av );
-        verticesImage.set( writePos +  5, colorA.R );
-        verticesImage.set( writePos +  6, colorA.G );
-        verticesImage.set( writePos +  7, colorA.B );
-        verticesImage.set( writePos +  8, colorA.A );
-        writePos+=9;
-        verticesImage.set( writePos +  0, bx );
-        verticesImage.set( writePos +  1, by );
-        verticesImage.set( writePos +  2, -5.0 );
-        verticesImage.set( writePos +  3, bu );
-        verticesImage.set( writePos +  4, bv );
-        verticesImage.set( writePos +  5, colorB.R );
-        verticesImage.set( writePos +  6, colorB.G );
-        verticesImage.set( writePos +  7, colorB.B );
-        verticesImage.set( writePos +  8, colorB.A );
-        writePos+=9;
-        verticesImage.set( writePos +  0, cx );
-        verticesImage.set( writePos +  1, cy );
-        verticesImage.set( writePos +  2, -5.0 );
-        verticesImage.set( writePos +  3, cu );
-        verticesImage.set( writePos +  4, cv );
-        verticesImage.set( writePos +  5, colorC.R );
-        verticesImage.set( writePos +  6, colorC.G );
-        verticesImage.set( writePos +  7, colorC.B );
-        verticesImage.set( writePos +  8, colorC.A );
-        writePos+=9;
-        writePosImage = writePos;
-        bufferIndexImage++;
+        if( imgLast != img || shaderMode == GradientMode ) flush();
+        imgLast = img; 
+        var pos = posImage;
+        verticesImg.set( pos, ax );
+        verticesImg.set( pos +  1, ay );
+        verticesImg.set( pos +  2, -5.0 );
+        verticesImg.set( pos +  3, au );
+        verticesImg.set( pos +  4, av );
+        verticesImg.set( pos +  5, colorA.R );
+        verticesImg.set( pos +  6, colorA.G );
+        verticesImg.set( pos +  7, colorA.B );
+        verticesImg.set( pos +  8, colorA.A );
+        verticesImg.set( pos +  9, bx );
+        verticesImg.set( pos +  10, by );
+        verticesImg.set( pos +  11, -5.0 );
+        verticesImg.set( pos +  12, bu );
+        verticesImg.set( pos +  13, bv );
+        verticesImg.set( pos +  14, colorB.R );
+        verticesImg.set( pos +  15, colorB.G );
+        verticesImg.set( pos +  16, colorB.B );
+        verticesImg.set( pos +  17, colorB.A );
+        verticesImg.set( pos +  18, cx );
+        verticesImg.set( pos +  19, cy );
+        verticesImg.set( pos +  20, -5.0 );
+        verticesImg.set( pos +  21, cu );
+        verticesImg.set( pos +  22, cv );
+        verticesImg.set( pos +  23, colorC.R );
+        verticesImg.set( pos +  24, colorC.G );
+        verticesImg.set( pos +  25, colorC.B );
+        verticesImg.set( pos +  26, colorC.A );
+        posImage = pos + 27;
+        imgBufferIndex++;
     }
-
-    public var framebuffer( null, set ): Framebuffer;
-    function set_framebuffer( f: Framebuffer ): Framebuffer {
-        g = f.g4;
-        isFramebuffer = true;
-        width = f.width;
-        height = f.height;
-        shaderMode = ImageMode;
+    
+    public var framebuffer( null, set ): Canvas;
+    function set_framebuffer( f: Canvas ): Canvas {
+        g               = f.g4;
+        isFramebuffer   = true;
+        shaderMode      = ImageMode;
+        width           = f.width;
+        height          = f.height;
         return f;
     }
-
+    
     public var canvas( null, set ): Canvas;
     function set_canvas( c: Canvas ): Canvas {
-        g = c.g4;
-        isFramebuffer = false;
-        width = c.width;
-        height = c.height;
-        shaderMode = GradientMode;
+        g               = c.g4;
+        isFramebuffer   = false;
+        shaderMode      = GradientMode;
+        width           = c.width;
+        height          = c.height;
         return c;
     }
-
-    private function getProjectionMatrix(): Void {
-        if ( isFramebuffer ) {
+    function getProjectionMatrix(): Void {
+        if( isFramebuffer ) {
             projectionMatrix = FastMatrix4.orthogonalProjection( 0, width, height, 0, 0.1, 1000 );
         } else {
             if( !Image.nonPow2Supported ) {
-                width = upperPowerOfTwo( width );
+                width  = upperPowerOfTwo( width );
                 height = upperPowerOfTwo( height );
             }
             if( g.renderTargetsInvertedY() ) {
@@ -363,68 +305,43 @@ class PolyPainter{
             }
         }
     }
-    
-    private function setPipeline( pipeline: PipelineState ): Void {
+    function setPipeline( pipeline: PipelineState ): Void {
         this.pipeline = pipeline;
-        if (pipeline != null) g.setPipeline( pipeline );
+        if( pipeline != null ) g.setPipeline( pipeline );
     }
-    
-    private function drawBuffer():Void {
-        drawBufferImage();
-        drawBufferGradient();
+    function drawBuffer():Void {
+        // drawBufferImage();
+        // drawBufferGradient();
+        if( imgBufferIndex    > 0 ) drawBufferImage();
+        if( gradBufferIndex > 0 ) drawBufferGradient();
     }
-
-    private function drawBufferGradient():Void{
+    function drawBufferGradient():Void{
         vertexBufferGradient.unlock();
         g.setVertexBuffer( vertexBufferGradient );
-        g.setIndexBuffer( indexBufferGradient );
-        g.setPipeline( shaderPipelineGradient );//pipeline == null ? shaderPipelineGradient : pipeline);
-        g.setMatrix( projectionLocationGradient, projectionMatrix );
-        g.drawIndexedVertices( 0, bufferIndexGradient*3 );
-        bufferIndexGradient = 0;
-        writePosGradient = 0;
-        verticesGradient = vertexBufferGradient.lock();
+        g.setIndexBuffer( indexBufferGrad );
+        g.setPipeline( gradientPipe );//pipeline == null ? gradientPipe : pipeline);
+        g.setMatrix( gradProjMatrix, projectionMatrix );
+        g.drawIndexedVertices( 0, gradBufferIndex*3 );
+        gradBufferIndex = 0;
+        posGradient    = 0;
+        verticesGrad    = vertexBufferGradient.lock();
     }
-
-    private function drawBufferImage(): Void {
+    function drawBufferImage(): Void {
         vertexBufferImage.unlock();
-        g.setVertexBuffer(vertexBufferImage);
-        g.setIndexBuffer(indexBufferImage);
-        g.setPipeline( shaderPipelineImage );//pipeline == null ? shaderPipelineImage : pipeline);
-        g.setTexture( textureLocation, lastTexture );
+        g.setVertexBuffer( vertexBufferImage );
+        g.setIndexBuffer( indexBufferImg );
+        g.setPipeline( imagePipe );//pipeline == null ? imagePipe : pipeline);
+        g.setTexture( textureLocation, imgLast );
         g.setTextureParameters( textureLocation, textureAddressingX, textureAddressingY, bilinear ? TextureFilter.LinearFilter : TextureFilter.PointFilter, bilinear ? TextureFilter.LinearFilter : TextureFilter.PointFilter, bilinearMipmaps ? MipMapFilter.LinearMipFilter : MipMapFilter.NoMipFilter );
-        g.setMatrix( projectionLocationImage, projectionMatrix );
-
-        g.drawIndexedVertices(0, bufferIndexImage*3);
-
+        g.setMatrix( imgProjMatrix, projectionMatrix );
+        g.drawIndexedVertices( 0, imgBufferIndex*3 );
         g.setTexture( textureLocation, null );
-        bufferIndexImage = 0;
-        writePosImage = 0;
-        verticesImage = vertexBufferImage.lock();
+        imgBufferIndex = 0;
+        posImage    = 0;
+        verticesImg    = vertexBufferImage.lock();
     }
-
-    public function begin(clear: Bool = true, clearColor: Color = null): Void {
-        if( g == null ) return;
-        g.begin();
-        if ( clear ) g.clear( clearColor );
-        getProjectionMatrix();
-    }
-
-    public function clear( color: Color = null ): Void {
-        if( g == null ) return;
-        drawBuffer();
-        g.clear( color == null ? Color.Black : color );
-    }
-
-    public function end(){
-        if( g == null ) return;
-        flush();
-        g.end();
-    }
-
     function flush(){
-        if( bufferIndexImage > 0 ) drawBufferImage();
-        if( bufferIndexGradient > 0 ) drawBufferGradient();
+        if( imgBufferIndex    > 0 ) drawBufferImage();
+        if( gradBufferIndex > 0 ) drawBufferGradient();
     }
-
 }
