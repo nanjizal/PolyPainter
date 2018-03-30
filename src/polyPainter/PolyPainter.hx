@@ -225,6 +225,32 @@ class PolyPainter{
         posGradient = pos + 21;
         gradBufferIndex++;
     }
+    public function drawFillQuad( ax: Float, ay: Float, bx: Float, by: Float
+                                , cx: Float, cy: Float, dx: Float, dy: Float
+                                , color ){
+        drawGradientQuad( ax, ay, bx, by, cx, cy, dx, dy, color, color, color, color );
+    }
+    public inline function drawGradientQuad( ax: Float, ay: Float, bx: Float, by: Float
+                                           , cx: Float, cy: Float, dx: Float, dy: Float
+                                           , colorA, colorB, colorC, colorD ){
+        drawGradientTriangle( ax, ay, bx, by, cx, cy, colorA, colorB, colorC );
+        drawGradientTriangle( ax, ay, cx, cy, dx, dy, colorA, colorC, colorD );
+    }
+    public function drawFillRectangle( ax: Float, ay: Float, dx: Float, dy: Float, color: Int ){
+        drawGradientRectangle( ax, ay, dx, dy, color, color, color, color );
+    }
+    public inline function drawGradientRectangle( ax: Float, ay: Float, dx: Float, dy: Float, colorA, colorB, colorC, colorD ){
+        var ex = ax + dx;
+        var ey = ay + dy;
+        drawGradientTriangle( ax, ay, ex, ay, ex, ey, colorA, colorB, colorC );
+        drawGradientTriangle( ax, ay, ex, ey, ax, ey, colorA, colorC, colorD );
+    }
+    public function drawImageRectangle( ax: Float, ay: Float, dx: Float, dy: Float, img: Image, ?alpha: Float = 1. ){
+        var ex = ax + dx;
+        var ey = ay + dy;
+        drawImageTriangle( ax, ay, ex, ay, ex, ey, 0, 0, 1, 0, 1, 1, img, alpha );
+        drawImageTriangle( ax, ay, ex, ey, ax, ey, 0, 0, 1, 0, 1, 1, img, alpha );
+    }
     public function drawImageTriangle( ax: Float, ay: Float, bx: Float, by: Float, cx: Float, cy: Float 
                                     ,  au: Float, av: Float, bu: Float, bv: Float, cu: Float, cv: Float
                                     , img: Image, ?alpha: Float = 1.){
